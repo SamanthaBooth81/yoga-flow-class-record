@@ -54,6 +54,8 @@ It is made with the intention of helping a small business keep their financial i
 ## Features to be Implemented
 - Further Automation of repetitive date input 
 - Calculations of the busiest period over a larger scale of time 
+- Code to add other venues and their capacity to the capacity worksheet
+- Code to add another class duration and cost to the price worksheet 
 
 # Technologies Used
 
