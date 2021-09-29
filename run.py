@@ -3,6 +3,8 @@ Below code required to link into google sheets spreadsheet
 """
 import gspread
 from google.oauth2.service_account import Credentials
+import datetime
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -23,7 +25,7 @@ def lesson_day_data():
     """
 
     print("Please provide day of your lesson.")
-    print("This should be between Monday to Sunday only\n")
+    print("This should be between monday to sunday only\n")
 
     lesson_day = [
         "monday", "tuesday", "wednesday", "thursday", "friday",
@@ -43,19 +45,40 @@ def lesson_day_data():
                 day_data = True
 
         if day_data:
-            print("Correct")
+            print("\n")
+            break
         else:
-            print("Incorrect")
+            print("Incorrect data, please choose a day in the week \n")
 
 
-def date_data():
+def lesson_date_data():
     """
     Input and validate date data from the user
     Return an error if incorrect
     """
 
-    print("Please provide date of your lesson.")
-    print("The date format should be DD/MM/YYYY \n")
-    
+    print("Please input the date of your lesson.")
+    inputDate = input("Enter the date in format 'dd/mm/yy': ")
+    day, month, year = inputDate.split('/')
 
-lesson_day_data()
+    while True:
+        isValidDate = True
+        try:
+            datetime.datetime(int(day), int(month), int(year))
+        except ValueError:
+            isValidDate = False
+            print("invalid data")
+
+        if(isValidDate):
+            print("Input date is valid ..")
+            break
+        else:
+            print("Input date is not valid..")
+
+
+def lesson_data():
+    lesson_day_data()
+    lesson_date_data()
+
+
+lesson_data()
