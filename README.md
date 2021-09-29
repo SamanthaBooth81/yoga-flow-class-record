@@ -101,5 +101,7 @@ No bugs found.
 # Credit
 ## Content 
 
+I used [Stack Overflow](https://stackoverflow.com/questions/3944655/testing-user-input-against-a-list-in-python) to test user input against the lesson_day list.
+
 # Acknowledgments
 Thank you to all who encouraged and supported me as I created my first game, espcially to my mentor for his guidance and patience. 
