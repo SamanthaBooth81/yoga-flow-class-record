@@ -24,8 +24,8 @@ def lesson_day_data():
     Return an error if incorrect
     """
 
-    print("Please provide day of your lesson.")
-    print("This should be between monday to sunday only\n")
+    print("Please provide day of your lesson in full.")
+    print("Example: monday not mon")
 
     lesson_day = [
         "monday", "tuesday", "wednesday", "thursday", "friday",
@@ -43,9 +43,9 @@ def lesson_day_data():
         for i in lesson_day:
             if day == i:
                 day_data = True
+                print(f"{day} is valid \n")
 
         if day_data:
-            print("\n")
             break
         else:
             print("Incorrect data, please choose a day in the week \n")
@@ -71,7 +71,7 @@ def lesson_date_data():
             print("invalid data")
 
         if(isValidDate):
-            print("Input date is valid \n")
+            print(f"{inputDate} is valid \n")
             break
         else:
             print("Input date is not valid")
@@ -86,22 +86,22 @@ def lesson_time_data():
     timeformat = "%H:%M"
 
     while True:
-        print("Please provide time (00:00) of your lesson. \n")
+        print("Please provide time (00:00) of your lesson.")
         time_data_str = input("Enter time here: ")
 
         timeformat = ("%H:%M")
-        isValidTime = False
 
         try:
             validtime = datetime.datetime.strptime(time_data_str, timeformat)
             if(validtime):
-                isValidTime = True
-                print(f"{time_data_str}")
+                # isValidTime = True
+                print(f"{time_data_str} is valid")
                 break
             else:
                 print("incorrect time data added")
         except Exception:
             print(f"{time_data_str} is incorrect")
+            print("time should be input in 00:00 format \n")
 
 
 def lesson_data():
