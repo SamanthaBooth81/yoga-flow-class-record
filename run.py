@@ -62,23 +62,52 @@ def lesson_date_data():
     day, month, year = inputDate.split('/')
 
     while True:
-        isValidDate = True
+        isValidDate = False
         try:
             datetime.datetime(int(day), int(month), int(year))
+            isValidDate = True
         except ValueError:
             isValidDate = False
             print("invalid data")
 
         if(isValidDate):
-            print("Input date is valid ..")
+            print("Input date is valid \n")
             break
         else:
-            print("Input date is not valid..")
+            print("Input date is not valid")
+
+
+def lesson_time_data():
+    """
+    Input and validate time data from the user
+    Return an error if incorrect
+    """
+
+    timeformat = "%H:%M"
+
+    while True:
+        print("Please provide time (00:00) of your lesson. \n")
+        time_data_str = input("Enter time here: ")
+
+        timeformat = ("%H:%M")
+        isValidTime = False
+
+        try:
+            validtime = datetime.datetime.strptime(time_data_str, timeformat)
+            if(validtime):
+                isValidTime = True
+                print(f"{time_data_str}")
+                break
+            else:
+                print("incorrect time data added")
+        except Exception:
+            print(f"{time_data_str} is incorrect")
 
 
 def lesson_data():
     lesson_day_data()
     lesson_date_data()
+    lesson_time_data()
 
 
 lesson_data()
