@@ -21,7 +21,7 @@ SHEET = GSPREAD_CLIENT.open('yoga _flow_class_record')
 def lesson_day_data():
     """
     Input and validate day data from the user
-    Return an error if incorrect
+    Return an error if incorrect data submitted
     """
 
     print("Please provide day of your lesson in full.")
@@ -54,7 +54,7 @@ def lesson_day_data():
 def lesson_date_data():
     """
     Input and validate date data from the user
-    Return an error if incorrect
+    Return an error if incorrect data submitted
     """
 
     print("Please input the date of your lesson.")
@@ -80,7 +80,7 @@ def lesson_date_data():
 def lesson_time_data():
     """
     Input and validate time data from the user
-    Return an error if incorrect
+    Return an error if incorrect data submitted
     """
 
     timeformat = "%H:%M"
@@ -94,20 +94,63 @@ def lesson_time_data():
         try:
             validtime = datetime.datetime.strptime(time_data_str, timeformat)
             if(validtime):
-                # isValidTime = True
-                print(f"{time_data_str} is valid")
+                print(f"{time_data_str} is valid \n")
                 break
-            else:
-                print("incorrect time data added")
         except Exception:
             print(f"{time_data_str} is incorrect")
             print("time should be input in 00:00 format \n")
 
 
+def lesson_duration_data():
+    """
+    Input and validate duration data from the user
+    Return error if incorrect data submitted
+    """
+    print("Please provide the duration of your lesson in minutes (00)")
+    print("Example: 60 \n")
+    duration_data_str = input("Enter lesson duration here: ")
+
+    while True:
+        duration = int(duration_data_str)
+        try:
+            if(duration):
+                print(f"{duration_data_str} is valid")
+                break
+        except Exception:
+            print("incorrect")
+
+
+def lesson_location_data():
+    """
+    Input and validate location data from the user
+    Return error if incorrect data submitted
+    """
+
+    print("Please provide the location of your lesson.")
+    print("For example: Camden Town \n")
+    location_data_str = input("Enter your data here: ")
+    """
+    https://docs.gspread.org/en/latest/user-guide.html#getting-all-values-from-a-row-or-a-column
+    """
+
+    while True:
+        capacity = SHEET.worksheet("capacity")
+        location = capacity.col_values(1)
+        try:
+            value = [location_data_str == location]
+            if (value):
+                print(f"{location_data_str} is valid")
+                break
+        except ValueError:
+            print(f"{location_data_str} is invalid")
+
+
 def lesson_data():
-    lesson_day_data()
-    lesson_date_data()
-    lesson_time_data()
+    #     lesson_day_data()
+    #     lesson_date_data()
+    #     lesson_time_data()
+    #     lesson_duration_data()
+    lesson_location_data()
 
 
 lesson_data()
