@@ -119,7 +119,7 @@ def lesson_duration_data():
             print("incorrect")
 
         if (lesson_length):
-            print(f"{duration_data_str} is valid \n")
+            print(f"{duration_data_str} is valid")
             break
         else:
             print("incorrect data input")
@@ -134,27 +134,33 @@ def lesson_location_data():
     print("Please provide the location of your lesson.")
     print("For example: Camden Town \n")
     location_data_str = input("Enter your data here: ")
+    location_data = location_data_str.title()
+
     """
-    https://docs.gspread.org/en/latest/user-guide.html#getting-all-values-from-a-row-or-a-column
+    Used the below link to find out how to find all
+    data in a spreadsheet to compare it to the user
+    input
+    https://docs.gspread.org/en/latest/user-guide.html#getting-a-cell-value
     """
 
     while True:
         capacity = SHEET.worksheet("capacity")
-        location = capacity.col_values(1)
+        # location = capacity.findall(location_data)
+
         try:
-            value = [location_data_str == location]
-            if (value):
-                print(f"{location_data_str} is valid")
+            location = capacity.findall(location_data)
+            if (location):
+                print(f"{location_data} is valid")
                 break
         except ValueError:
             print(f"{location_data_str} is invalid")
 
 
 def lesson_data():
-    lesson_day_data()
-    lesson_date_data()
-    lesson_time_data()
-    lesson_duration_data()
+    # lesson_day_data()
+    # lesson_date_data()
+    # lesson_time_data()
+    # lesson_duration_data()
     lesson_location_data()
 
 
