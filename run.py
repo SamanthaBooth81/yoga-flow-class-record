@@ -27,9 +27,9 @@ def lesson_day_data():
     print("Please provide day of your lesson in full.")
     print("Example: monday not mon")
 
-    lesson_day = [
+    lesson_day = (
         "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-        "Saturday", "Sunday"]
+        "Saturday", "Sunday")
 
     """
     I used the following webpage helped with the while loop:
