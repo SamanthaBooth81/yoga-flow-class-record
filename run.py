@@ -106,18 +106,23 @@ def lesson_duration_data():
     Input and validate duration data from the user
     Return error if incorrect data submitted
     """
-    print("Please provide the duration of your lesson in minutes (00)")
-    print("Example: 60 \n")
+    print("Please provide the duration of your lesson in minutes.")
+    print("This could be either 45, 60, 90 or 120 minutes. Example: 60")
     duration_data_str = input("Enter lesson duration here: ")
 
     while True:
-        duration = int(duration_data_str)
+        prices = SHEET.worksheet("prices")
+
         try:
-            if(duration):
-                print(f"{duration_data_str} is valid")
-                break
-        except Exception:
+            lesson_length = prices.findall(duration_data_str)
+        except ValueError:
             print("incorrect")
+
+        if (lesson_length):
+            print(f"{duration_data_str} is valid \n")
+            break
+        else:
+            print("incorrect data input")
 
 
 def lesson_location_data():
@@ -146,10 +151,10 @@ def lesson_location_data():
 
 
 def lesson_data():
-    #     lesson_day_data()
-    #     lesson_date_data()
-    #     lesson_time_data()
-    #     lesson_duration_data()
+    lesson_day_data()
+    lesson_date_data()
+    lesson_time_data()
+    lesson_duration_data()
     lesson_location_data()
 
 
