@@ -158,11 +158,11 @@ def lesson_location_data():
 
 
 def lesson_data():
-    # lesson_day_data()
+    lesson_day_data()
     lesson_date_data()
     lesson_time_data()
-    # lesson_duration_data()
-    # lesson_location_data()
+    lesson_duration_data()
+    lesson_location_data()
 
 
 lesson_data()
