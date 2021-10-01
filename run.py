@@ -28,8 +28,8 @@ def lesson_day_data():
     print("Example: monday not mon")
 
     lesson_day = [
-        "monday", "tuesday", "wednesday", "thursday", "friday",
-        "saturday", "sunday"]
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+        "Saturday", "Sunday"]
 
     """
     I used the following webpage helped with the while loop:
@@ -37,7 +37,8 @@ def lesson_day_data():
     """
     while True:
         day_data_str = input("Enter lesson day here: ")
-        day = str(day_data_str)
+        day_input = day_data_str.title()
+        day = str(day_input)
 
         day_data = False
         for i in lesson_day:
@@ -119,7 +120,7 @@ def lesson_duration_data():
             print("incorrect")
 
         if (lesson_length):
-            print(f"{duration_data_str} is valid")
+            print(f"{duration_data_str} is valid \n")
             break
         else:
             print("incorrect data input")
@@ -157,10 +158,10 @@ def lesson_location_data():
 
 
 def lesson_data():
-    # lesson_day_data()
-    # lesson_date_data()
-    # lesson_time_data()
-    # lesson_duration_data()
+    lesson_day_data()
+    lesson_date_data()
+    lesson_time_data()
+    lesson_duration_data()
     lesson_location_data()
 
 
