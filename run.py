@@ -58,24 +58,24 @@ def lesson_date_data():
     Return an error if incorrect data submitted
     """
 
-    print("Please input the date of your lesson.")
-    inputDate = input("Enter the date in format 'dd/mm/yy': ")
-    day, month, year = inputDate.split('/')
-
     while True:
-        isValidDate = False
-        try:
-            datetime.datetime(int(day), int(month), int(year))
-            isValidDate = True
-        except ValueError:
-            isValidDate = False
-            print("invalid data")
+        print("Please input the date of your lesson.")
+        input_date = input("Enter the date in format 'dd/mm/yy': ")
+        day, month, year = input_date.split('/')
+        date = day, month, year
 
-        if(isValidDate):
-            print(f"{inputDate} is valid \n")
-            break
-        else:
-            print("Input date is not valid")
+        try:
+            if datetime.datetime(int(day), int(month), int(year)):
+                print(f"{input_date} is valid \n")
+                break
+            else:
+                if date != datetime.datetime(int(day), int(month), int(year)):
+                    raise ValueError(
+                        f"{input_date} must be writtin in dd/mm/yy format")
+        except ValueError as e:
+            print(f"invalid data: {e}, please try again")
+
+        # return False
 
 
 def lesson_time_data():
@@ -158,11 +158,11 @@ def lesson_location_data():
 
 
 def lesson_data():
-    lesson_day_data()
+    # lesson_day_data()
     lesson_date_data()
     lesson_time_data()
-    lesson_duration_data()
-    lesson_location_data()
+    # lesson_duration_data()
+    # lesson_location_data()
 
 
 lesson_data()
