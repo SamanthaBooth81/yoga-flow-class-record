@@ -62,20 +62,20 @@ def lesson_date_data():
         print("Please input the date of your lesson.")
         input_date = input("Enter the date in format 'dd/mm/yy': ")
         day, month, year = input_date.split('/')
-        date = day, month, year
 
         try:
             if datetime.datetime(int(day), int(month), int(year)):
                 print(f"{input_date} is valid \n")
                 break
             else:
-                if date != datetime.datetime(int(day), int(month), int(year)):
-                    raise ValueError(
-                        f"{input_date} must be writtin in dd/mm/yy format")
+                if day > 31:
+                    raise ValueError()
         except ValueError as e:
-            print(f"invalid data: {e}, please try again")
+            print(f"invalid data: {e}, please try again \n")
 
-        # return False
+        """
+        HELP! ValueError: not enough values to unpack (expected 3, got 2)
+        """
 
 
 def lesson_time_data():
@@ -158,11 +158,11 @@ def lesson_location_data():
 
 
 def lesson_data():
-    lesson_day_data()
+    # lesson_day_data()
     lesson_date_data()
-    lesson_time_data()
-    lesson_duration_data()
-    lesson_location_data()
+    # lesson_time_data()
+    # lesson_duration_data()
+    # lesson_location_data()
 
 
 lesson_data()
