@@ -116,14 +116,13 @@ def lesson_duration_data():
 
         try:
             lesson_length = prices.findall(duration_data_str)
-        except ValueError:
-            print("incorrect")
-
-        if (lesson_length):
-            print(f"{duration_data_str} is valid \n")
-            break
-        else:
-            print("incorrect data input")
+            if (lesson_length):
+                print(f"{duration_data_str} is valid \n")
+                break
+            else:
+                raise ValueError()
+        except ValueError as e:
+            print(f"invalid data: {e}, please try again \n")
 
 
 def lesson_location_data():
@@ -159,10 +158,10 @@ def lesson_location_data():
 
 def lesson_data():
     # lesson_day_data()
-    lesson_date_data()
+    # lesson_date_data()
     # lesson_time_data()
-    # lesson_duration_data()
-    # lesson_location_data()
+    lesson_duration_data()
+    lesson_location_data()
 
 
 lesson_data()
