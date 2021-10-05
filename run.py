@@ -173,11 +173,10 @@ def lesson_attendance_data():
                 break
             else:
                 raise ValueError(
-                    "please input a number less than 21."
+                    "please input a number less than 21. \n"
                     )
         except ValueError as e:
-            print(f"Incorrect data input, {e}")
-            return True
+            print(f"Incorrect data input: {e}")
 
 
 def lesson_data():
