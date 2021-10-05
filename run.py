@@ -132,11 +132,6 @@ def lesson_location_data():
     Return error if incorrect data submitted
     """
 
-    print("Please provide the location of your lesson.")
-    print("For example: Camden Town \n")
-    location_data_str = input("Enter your data here: ")
-    location_data = location_data_str.title()
-
     """
     Used the below link to find out how to find all
     data in a spreadsheet to compare it to the user
@@ -145,11 +140,18 @@ def lesson_location_data():
     """
 
     while True:
+        print("Please provide the location of your lesson.")
+        print("For example: Camden Town \n")
+        location_data_str = input("Enter your data here: ")
+        location_data = location_data_str.title()
         try:
             location = capacity.findall(location_data)
             if (location):
                 print(f"{location_data} is valid \n")
                 break
+            else:
+                raise ValueError()
+
         except ValueError:
             print(f"{location_data_str} is invalid")
 
@@ -179,12 +181,12 @@ def lesson_attendance_data():
 
 
 def lesson_data():
-    # lesson_day_data()
-    # lesson_date_data()
+    lesson_day_data()
+    lesson_date_data()
     lesson_time_data()
     lesson_duration_data()
-    # lesson_location_data()
-    # lesson_attendance_data()
+    lesson_location_data()
+    lesson_attendance_data()
 
 
 lesson_data()
