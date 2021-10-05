@@ -84,8 +84,6 @@ def lesson_time_data():
     Return an error if incorrect data submitted
     """
 
-    timeformat = "%H:%M"
-
     while True:
         print("Please provide time (00:00) of your lesson.")
         time_data_str = input("Enter time here: ")
@@ -107,11 +105,11 @@ def lesson_duration_data():
     Input and validate duration data from the user
     Return error if incorrect data submitted
     """
-    print("Please provide the duration of your lesson in minutes.")
-    print("This could be either 45, 60, 90 or 120 minutes. Example: 60")
-    duration_data_str = input("Enter lesson duration here: ")
 
     while True:
+        print("Please provide the duration of your lesson in minutes.")
+        print("This could be either 45, 60, 90 or 120 minutes. Example: 60")
+        duration_data_str = input("Enter lesson duration here: ")
         prices = SHEET.worksheet("prices")
 
         try:
@@ -120,9 +118,9 @@ def lesson_duration_data():
                 print(f"{duration_data_str} is valid \n")
                 break
             else:
-                raise ValueError()
-        except ValueError as e:
-            print(f"invalid data: {e}, please try again \n")
+                raise Exception()
+        except Exception:
+            print("invalid data, please try again \n")
 
 
 capacity = SHEET.worksheet("capacity")
@@ -150,7 +148,7 @@ def lesson_location_data():
         try:
             location = capacity.findall(location_data)
             if (location):
-                print(f"{location_data} is valid")
+                print(f"{location_data} is valid \n")
                 break
         except ValueError:
             print(f"{location_data_str} is invalid")
@@ -183,10 +181,10 @@ def lesson_attendance_data():
 def lesson_data():
     # lesson_day_data()
     # lesson_date_data()
-    # lesson_time_data()
-    # lesson_duration_data()
+    lesson_time_data()
+    lesson_duration_data()
     # lesson_location_data()
-    lesson_attendance_data()
+    # lesson_attendance_data()
 
 
 lesson_data()
