@@ -125,6 +125,9 @@ def lesson_duration_data():
             print(f"invalid data: {e}, please try again \n")
 
 
+capacity = SHEET.worksheet("capacity")
+
+
 def lesson_location_data():
     """
     Input and validate location data from the user
@@ -144,9 +147,6 @@ def lesson_location_data():
     """
 
     while True:
-        capacity = SHEET.worksheet("capacity")
-        # location = capacity.findall(location_data)
-
         try:
             location = capacity.findall(location_data)
             if (location):
@@ -156,12 +156,37 @@ def lesson_location_data():
             print(f"{location_data_str} is invalid")
 
 
+def lesson_attendance_data():
+    """
+    Input and validate attendance data from the user
+    Return error if incorrect data submitted
+    """
+
+    while True:
+        print("Please provide the number of students who attended.")
+        lesson_attendance_str = input("Enter student attendance here: ")
+        lesson_attendance = int(lesson_attendance_str)
+
+        try:
+            if lesson_attendance <= 20:
+                print(f"{lesson_attendance} is valid.")
+                break
+            else:
+                raise ValueError(
+                    "please input a number less than 21."
+                    )
+        except ValueError as e:
+            print(f"Incorrect data input, {e}")
+            return True
+
+
 def lesson_data():
     # lesson_day_data()
     # lesson_date_data()
     # lesson_time_data()
-    lesson_duration_data()
-    lesson_location_data()
+    # lesson_duration_data()
+    # lesson_location_data()
+    lesson_attendance_data()
 
 
 lesson_data()
