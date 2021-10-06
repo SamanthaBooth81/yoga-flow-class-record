@@ -21,6 +21,7 @@ capacity = SHEET.worksheet("capacity")
 prices = SHEET.worksheet("prices")
 
 new_lesson_data = []
+# location = input.location_data
 
 
 def lesson_day_data():
@@ -153,8 +154,9 @@ def lesson_location_data():
         location_data_str = input("Enter your data here: ")
         location_data = location_data_str.title()
         try:
-            location = capacity.findall(location_data)
-            if (location):
+            class_location = capacity.col_values(1)
+            del class_location[0]
+            if location_data in class_location:
                 print(f"{location_data} is valid \n")
                 new_lesson_data.append(location_data)
                 break
@@ -175,6 +177,11 @@ def lesson_attendance_data():
         print("Please provide the number of students who attended.")
         lesson_attendance_str = input("Enter student attendance here: ")
         lesson_attendance = int(lesson_attendance_str)
+
+        # lesson_location = capacity.col_values(1)
+        # del lesson_location[0]
+        # location_capacity = capacity.col_values(2)
+        # del location_capacity[0]
 
         try:
             if lesson_attendance <= 20:
@@ -202,28 +209,28 @@ def update_attendance_worksheet(data):
     print("Attendance worksheet updated")
 
 
-def calculate_earnings():
-    """
-    Calculate the earnings for that lesson using
-    the attendance and duration input and the price list
-    on the linked spreadsheet
-    """
+# def calculate_earnings():
+#     """
+#     Calculate the earnings for that lesson using
+#     the attendance and duration input and the price list
+#     on the linked spreadsheet
+#     """
 
-    class_price = prices.col_values(2)
-    print(class_price)
+#     class_price = prices.col_values(2)
+#     print(class_price)
 
 
 def lesson_data():
-    # lesson_day_data()
-    # lesson_date_data()
-    # lesson_time_data()
+    lesson_day_data()
+    lesson_date_data()
+    lesson_time_data()
     lesson_duration_data()
-    # lesson_location_data()
-    # lesson_attendance_data()
-    # data = new_lesson_data
-    # update_attendance_worksheet(data)
+    lesson_location_data()
+    lesson_attendance_data()
+    data = new_lesson_data
+    update_attendance_worksheet(data)
     # calculate_earnings()
 
 
 lesson_data()
-# print(new_lesson_data)
+print(new_lesson_data)
