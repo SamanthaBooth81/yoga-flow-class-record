@@ -196,12 +196,16 @@ def lesson_attendance_data():
     return lesson_attendance
 
 
-def update_attendance_worksheet():
+def update_attendance_worksheet(data):
     """
     Push user inputs back into the attendance worksheet
     """
 
     print("Updating worksheet...")
+    worksheet_update = SHEET.worksheet("attendance")
+    worksheet_update.append_row(data)
+
+    print("Attendance worksheet updated")
 
 
 # def calculate_earnings():
@@ -219,7 +223,8 @@ def lesson_data():
     lesson_duration_data()
     lesson_location_data()
     lesson_attendance_data()
-    # update_attendance_worksheet()
+    data = new_lesson_data
+    update_attendance_worksheet(data)
 
 
 lesson_data()
