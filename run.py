@@ -51,6 +51,8 @@ def lesson_day_data():
         else:
             print("Incorrect data, please choose a day in the week \n")
 
+    return day
+
 
 def lesson_date_data():
     """
@@ -77,6 +79,8 @@ def lesson_date_data():
         HELP! ValueError: not enough values to unpack (expected 3, got 2)
         """
 
+    return input_date
+
 
 def lesson_time_data():
     """
@@ -98,6 +102,8 @@ def lesson_time_data():
         except Exception:
             print(f"{time_data_str} is incorrect")
             print("time should be input in 00:00 format \n")
+
+    return time_data_str
 
 
 def lesson_duration_data():
@@ -121,6 +127,8 @@ def lesson_duration_data():
                 raise Exception()
         except Exception:
             print("invalid data, please try again \n")
+
+    return duration_data_str
 
 
 capacity = SHEET.worksheet("capacity")
@@ -153,7 +161,9 @@ def lesson_location_data():
                 raise ValueError()
 
         except ValueError:
-            print(f"{location_data_str} is invalid")
+            print(f"{location_data_str} is invalid \n")
+
+    return location_data
 
 
 def lesson_attendance_data():
@@ -174,9 +184,10 @@ def lesson_attendance_data():
             else:
                 raise ValueError(
                     "please input a number less than 21. \n"
-                    )
+                )
         except ValueError as e:
-            print(f"Incorrect data input: {e}")
+            print(f"Incorrect data input, {e}")
+    return lesson_attendance
 
 
 def lesson_data():
