@@ -200,12 +200,14 @@ def update_attendance_worksheet(data):
     print("Attendance worksheet updated")
 
 
-def calculate_earnings():
-    """
-    Calculate the earnings for that lesson using
-    the attendance and duration input and the price list
-    on the linked spreadsheet
-    """
+# def calculate_earnings():
+#     """
+#     Calculate the earnings for that lesson using
+#     the attendance and duration input and the price list
+#     on the linked spreadsheet
+#     """
+
+#     class_price = prices.col_values(2)
 
 
 def lesson_data():
@@ -217,6 +219,7 @@ def lesson_data():
     lesson_attendance_data()
     data = new_lesson_data
     update_attendance_worksheet(data)
+    # calculate_earnings()
 
 
 lesson_data()
