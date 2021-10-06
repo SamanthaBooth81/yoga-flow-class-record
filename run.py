@@ -17,8 +17,13 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('yoga _flow_class_record')
 
+capacity = SHEET.worksheet("capacity")
+prices = SHEET.worksheet("prices")
 
-def lesson_day_data():
+new_lesson_data = []
+
+
+def input_lesson_data():
     """
     Input and validate day data from the user
     Return an error if incorrect data submitted
@@ -37,8 +42,8 @@ def lesson_day_data():
     """
     while True:
         day_data_str = input("Enter lesson day here: ")
-        day_input = day_data_str.title()
-        day = str(day_input)
+        input_day = day_data_str.title()
+        day = str(input_day)
 
         day_data = False
         for i in lesson_day:
@@ -47,11 +52,10 @@ def lesson_day_data():
                 print(f"{day} is valid \n")
 
         if day_data:
+            new_lesson_data.append(input_day)
             break
         else:
             print("Incorrect data, please choose a day in the week \n")
-
-    return day
 
 
 def lesson_date_data():
@@ -68,6 +72,7 @@ def lesson_date_data():
         try:
             if datetime.datetime(int(day), int(month), int(year)):
                 print(f"{input_date} is valid \n")
+                new_lesson_data.append(input_date)
                 break
             else:
                 if day > 31:
@@ -98,6 +103,7 @@ def lesson_time_data():
             validtime = datetime.datetime.strptime(time_data_str, timeformat)
             if(validtime):
                 print(f"{time_data_str} is valid \n")
+                new_lesson_data.append(time_data_str)
                 break
         except Exception:
             print(f"{time_data_str} is incorrect")
@@ -122,6 +128,7 @@ def lesson_duration_data():
             lesson_length = prices.findall(duration_data_str)
             if (lesson_length):
                 print(f"{duration_data_str} is valid \n")
+                new_lesson_data.append(duration_data_str)
                 break
             else:
                 raise Exception()
@@ -129,9 +136,6 @@ def lesson_duration_data():
             print("invalid data, please try again \n")
 
     return duration_data_str
-
-
-capacity = SHEET.worksheet("capacity")
 
 
 def lesson_location_data():
@@ -156,6 +160,7 @@ def lesson_location_data():
             location = capacity.findall(location_data)
             if (location):
                 print(f"{location_data} is valid \n")
+                new_lesson_data.append(location_data)
                 break
             else:
                 raise ValueError()
@@ -180,6 +185,7 @@ def lesson_attendance_data():
         try:
             if lesson_attendance <= 20:
                 print(f"{lesson_attendance} is valid.")
+                new_lesson_data.append(lesson_attendance)
                 break
             else:
                 raise ValueError(
@@ -190,13 +196,31 @@ def lesson_attendance_data():
     return lesson_attendance
 
 
+def update_attendance_worksheet():
+    """
+    Push user inputs back into the attendance worksheet
+    """
+
+    print("Updating worksheet...")
+
+
+# def calculate_earnings():
+#     """
+#     Calculate the earnings for that lesson using
+#     the attendance and duration input and the price list
+#     on the linked spreadsheet
+#     """
+
+
 def lesson_data():
-    lesson_day_data()
+    input_lesson_data()
     lesson_date_data()
     lesson_time_data()
     lesson_duration_data()
     lesson_location_data()
     lesson_attendance_data()
+    # update_attendance_worksheet()
 
 
 lesson_data()
+print(new_lesson_data)
