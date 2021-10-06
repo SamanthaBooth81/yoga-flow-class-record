@@ -9,9 +9,13 @@
 [Yoga Flow Class Record Repository](https://github.com/SamanthaBooth81/yoga-flow-class-record)
 
 # About
-This project collects class data from the user for the purpose of calculating and updating student attendance and earnings within the spreadsheet and to aid decision making regarding reshuffling/amending their schedule dependant on class size vs. studio capacity, and location. 
+This project collects lesson data from the user for the purpose of calculating and updating student attendance and earnings within the spreadsheet. Alongside managing financial data, this projects aims to aid decision making with regards to their current schedule dependant on class size vs. studio capacity, and location. 
 
-It is made with the intention of helping a small business keep their financial information in order and return to the user their busiest days. 
+It is made with the intention of helping a small business owner keep their financial information in order and return to the user their busiest days. This should in turn help with both short term and long term decision making surrounding their current timetable such as:
+- reducing current personal lesson days (for the business owner)
+- taking on new staff 
+- expansion of the lessons on offer
+- expansion of the locations on offer
 
 # Table of Contents
 
@@ -41,10 +45,19 @@ It is made with the intention of helping a small business keep their financial i
 ## User Stories
 - As a small business owner I want to:
     * Keep track of the growth of the business
-    * Calculate earnings per class
-    * Run basic analytics based on class size and earning to figure out how best to manage the timetable in the short term and then eventually in the long term
+    * Calculate earnings per lesson
+    * Run basic analytics based on class size and earnings to aid with business decisions 
+    * Plan for the future growth of the business 
 
 # Features
+## Inputting Data
+- Input of lesson data including:
+    * Date
+    * Date
+    * Time
+    * Duration
+    * Location 
+    * Attendance 
 
 ##  Calculations
 - Calculate earnings per class and update spreadsheet 
@@ -52,7 +65,7 @@ It is made with the intention of helping a small business keep their financial i
 - Calculate the busiest location
 
 ## Features to be Implemented
-- Further Automation of repetitive date input 
+- Further automation of repetitive data input
 - Calculations of the busiest period over a larger scale of time 
 - Code to add other venues and their capacity to the capacity worksheet
 - Code to add another class duration and cost to the price worksheet 
