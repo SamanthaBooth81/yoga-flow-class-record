@@ -46,10 +46,10 @@ def lesson_day_data():
         day = str(input_day)
 
         day_data = False
-        for i in lesson_day:
-            if day == i:
-                day_data = True
-                print(f"{day} is valid \n")
+
+        if day in lesson_day:
+            day_data = True
+            print(f"{day} is valid \n")
 
         if day_data:
             new_lesson_data.append(input_day)
@@ -67,9 +67,9 @@ def lesson_date_data():
     while True:
         print("Please input the date of your lesson.")
         input_date = input("Enter the date in format 'dd/mm/yy': ")
-        day, month, year = input_date.split('/')
 
         try:
+            day, month, year = input_date.split('/')
             if datetime.datetime(int(day), int(month), int(year)):
                 print(f"{input_date} is valid \n")
                 new_lesson_data.append(input_date)
@@ -121,8 +121,10 @@ def lesson_duration_data():
         prices = SHEET.worksheet("prices")
 
         try:
-            lesson_length = prices.findall(duration_data_str)
-            if (lesson_length):
+            class_duration = prices.col_values(1)
+            del class_duration[0]
+
+            if duration_data_str in class_duration:
                 print(f"{duration_data_str} is valid \n")
                 new_lesson_data.append(duration_data_str)
                 break
@@ -200,27 +202,28 @@ def update_attendance_worksheet(data):
     print("Attendance worksheet updated")
 
 
-# def calculate_earnings():
-#     """
-#     Calculate the earnings for that lesson using
-#     the attendance and duration input and the price list
-#     on the linked spreadsheet
-#     """
+def calculate_earnings():
+    """
+    Calculate the earnings for that lesson using
+    the attendance and duration input and the price list
+    on the linked spreadsheet
+    """
 
-#     class_price = prices.col_values(2)
+    class_price = prices.col_values(2)
+    print(class_price)
 
 
 def lesson_data():
-    lesson_day_data()
-    lesson_date_data()
-    lesson_time_data()
+    # lesson_day_data()
+    # lesson_date_data()
+    # lesson_time_data()
     lesson_duration_data()
-    lesson_location_data()
-    lesson_attendance_data()
-    data = new_lesson_data
-    update_attendance_worksheet(data)
+    # lesson_location_data()
+    # lesson_attendance_data()
+    # data = new_lesson_data
+    # update_attendance_worksheet(data)
     # calculate_earnings()
 
 
 lesson_data()
-print(new_lesson_data)
+# print(new_lesson_data)
