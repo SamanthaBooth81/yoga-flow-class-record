@@ -23,7 +23,7 @@ prices = SHEET.worksheet("prices")
 new_lesson_data = []
 
 
-def input_lesson_data():
+def lesson_day_data():
     """
     Input and validate day data from the user
     Return an error if incorrect data submitted
@@ -84,8 +84,6 @@ def lesson_date_data():
         HELP! ValueError: not enough values to unpack (expected 3, got 2)
         """
 
-    return input_date
-
 
 def lesson_time_data():
     """
@@ -108,8 +106,6 @@ def lesson_time_data():
         except Exception:
             print(f"{time_data_str} is incorrect")
             print("time should be input in 00:00 format \n")
-
-    return time_data_str
 
 
 def lesson_duration_data():
@@ -134,8 +130,6 @@ def lesson_duration_data():
                 raise Exception()
         except Exception:
             print("invalid data, please try again \n")
-
-    return duration_data_str
 
 
 def lesson_location_data():
@@ -168,8 +162,6 @@ def lesson_location_data():
         except ValueError:
             print(f"{location_data_str} is invalid \n")
 
-    return location_data
-
 
 def lesson_attendance_data():
     """
@@ -193,31 +185,31 @@ def lesson_attendance_data():
                 )
         except ValueError as e:
             print(f"Incorrect data input, {e}")
-    return lesson_attendance
 
 
 def update_attendance_worksheet(data):
     """
-    Push user inputs back into the attendance worksheet
+    Push user inputs from the above lesson_
+    functions back into the attendance worksheet
     """
 
-    print("Updating worksheet...")
+    print("Updating worksheet... \n")
     worksheet_update = SHEET.worksheet("attendance")
     worksheet_update.append_row(data)
 
     print("Attendance worksheet updated")
 
 
-# def calculate_earnings():
-#     """
-#     Calculate the earnings for that lesson using
-#     the attendance and duration input and the price list
-#     on the linked spreadsheet
-#     """
+def calculate_earnings():
+    """
+    Calculate the earnings for that lesson using
+    the attendance and duration input and the price list
+    on the linked spreadsheet
+    """
 
 
 def lesson_data():
-    input_lesson_data()
+    lesson_day_data()
     lesson_date_data()
     lesson_time_data()
     lesson_duration_data()
