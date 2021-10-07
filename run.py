@@ -22,6 +22,8 @@ prices = SHEET.worksheet("prices")
 
 new_lesson_data = []
 # location = input.location_data
+# location_data = None
+location_index = []
 
 
 def lesson_day_data():
@@ -159,6 +161,8 @@ def lesson_location_data():
             if location_data in class_location:
                 print(f"{location_data} is valid \n")
                 new_lesson_data.append(location_data)
+                location_data_index = class_location.index(location_data)
+                location_index.append(location_data_index)
                 break
             else:
                 raise ValueError()
@@ -172,28 +176,61 @@ def lesson_attendance_data():
     Input and validate attendance data from the user
     Return error if incorrect data submitted
     """
-
     while True:
         print("Please provide the number of students who attended.")
         lesson_attendance_str = input("Enter student attendance here: ")
         lesson_attendance = int(lesson_attendance_str)
 
+        # column of capacity data for each location
+        location_capacity = capacity.col_values(2)
+        del location_capacity[0]  # delete the first item in column of data
+
+        print(location_capacity.index)
+
+        try:
+            attendance_location = (location_capacity.index == location_index)
+            if (attendance_location):
+                if lesson_attendance <= location_capacity:
+                    print("correct")
+                    break
+            else:
+                print("incorrect")
+                raise ValueError()
+        except ValueError as e:
+            print(f"Error: {e}, please try again")
+
+    # while True:
+        # print("Please provide the number of students who attended.")
+        # lesson_attendance_str = input("Enter student attendance here: ")
+        # lesson_attendance = int(lesson_attendance_str)
+
         # lesson_location = capacity.col_values(1)
         # del lesson_location[0]
+
         # location_capacity = capacity.col_values(2)
         # del location_capacity[0]
 
-        try:
-            if lesson_attendance <= 20:
-                print(f"{lesson_attendance} is valid.")
-                new_lesson_data.append(lesson_attendance)
-                break
-            else:
-                raise ValueError(
-                    "please input a number less than 21. \n"
-                )
-        except ValueError as e:
-            print(f"Incorrect data input, {e}")
+        # lesson_attendance_index = []
+
+        # for i in range(0, len(lesson_location)):
+        #     if lesson_location[i] == location_data:
+        #         lesson_attendance_index.append(i)
+        #         print(f"{lesson_attendance}")
+        #         break
+        #     else:
+        #         print("incorrect")
+
+        # try:
+        #     if lesson_attendance <= 20:
+        #         print(f"{lesson_attendance} is valid.")
+        #         new_lesson_data.append(lesson_attendance)
+        #         break
+        #     else:
+        #         raise ValueError(
+        #             "please input a number less than 21. \n"
+        #         )
+        # except ValueError as e:
+        #     print(f"Incorrect data input, {e}")
 
 
 def update_attendance_worksheet(data):
@@ -221,16 +258,16 @@ def update_attendance_worksheet(data):
 
 
 def lesson_data():
-    lesson_day_data()
-    lesson_date_data()
-    lesson_time_data()
-    lesson_duration_data()
+    # lesson_day_data()
+    # lesson_date_data()
+    # lesson_time_data()
+    # lesson_duration_data()
     lesson_location_data()
     lesson_attendance_data()
-    data = new_lesson_data
-    update_attendance_worksheet(data)
+    # data = new_lesson_data
+    # update_attendance_worksheet(data)
     # calculate_earnings()
 
 
 lesson_data()
-print(new_lesson_data)
+# print(new_lesson_data)
