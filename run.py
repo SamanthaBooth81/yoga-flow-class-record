@@ -20,9 +20,18 @@ SHEET = GSPREAD_CLIENT.open('yoga _flow_class_record')
 capacity = SHEET.worksheet("capacity")
 prices = SHEET.worksheet("prices")
 
+"""
+new_lesson_data Adds user input into a list which is pushed back
+into the spreadsheet when all data is collected.
+"""
 new_lesson_data = []
-# location = input.location_data
-# location_data = None
+
+"""
+location_index Stores the index of the location from the list pulled
+from the spreadsheet to be used when adding student attendance.
+This will help identify the capacity of the studio and run an error
+if attendance is too high.
+"""
 location_index = []
 
 
@@ -199,17 +208,7 @@ def lesson_attendance_data():
         except ValueError as e:
             print(f"Error: {e}, please try again")
 
-    # while True:
-        # print("Please provide the number of students who attended.")
-        # lesson_attendance_str = input("Enter student attendance here: ")
-        # lesson_attendance = int(lesson_attendance_str)
-
-        # lesson_location = capacity.col_values(1)
-        # del lesson_location[0]
-
-        # location_capacity = capacity.col_values(2)
-        # del location_capacity[0]
-
+        # FIRST TRY, not finished
         # lesson_attendance_index = []
 
         # for i in range(0, len(lesson_location)):
@@ -220,17 +219,17 @@ def lesson_attendance_data():
         #     else:
         #         print("incorrect")
 
-        # try:
-        #     if lesson_attendance <= 20:
-        #         print(f"{lesson_attendance} is valid.")
-        #         new_lesson_data.append(lesson_attendance)
-        #         break
-        #     else:
-        #         raise ValueError(
-        #             "please input a number less than 21. \n"
-        #         )
-        # except ValueError as e:
-        #     print(f"Incorrect data input, {e}")
+
+# def calculate_earnings():
+#     """
+#     Calculate the earnings for that lesson using
+#     the attendance and duration input and the price list
+#     on the linked spreadsheet
+#     """
+
+#     class_price = prices.col_values(2)
+#     print(class_price)
+#     new_lesson_data.append(calculated_earnings)
 
 
 def update_attendance_worksheet(data):
@@ -244,17 +243,6 @@ def update_attendance_worksheet(data):
     worksheet_update.append_row(data)
 
     print("Attendance worksheet updated")
-
-
-# def calculate_earnings():
-#     """
-#     Calculate the earnings for that lesson using
-#     the attendance and duration input and the price list
-#     on the linked spreadsheet
-#     """
-
-#     class_price = prices.col_values(2)
-#     print(class_price)
 
 
 def lesson_data():
