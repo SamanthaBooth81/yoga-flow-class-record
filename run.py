@@ -32,7 +32,7 @@ from the spreadsheet to be used when adding student attendance.
 This will help identify the capacity of the studio and run an error
 if attendance is too high.
 """
-location_index = 0
+# location_index = 0 # REMOVE
 
 
 def lesson_day_data():
@@ -190,28 +190,30 @@ def lesson_attendance_data():
     Return error if incorrect data submitted
     """
     while True:
-        print("Please provide the number of students who attended.")
-        lesson_attendance_str = input("Enter student attendance here: ")
-        lesson_attendance = int(lesson_attendance_str)
-
         # column of capacity data for each location
         location_capacity = capacity.col_values(2)
-        del location_capacity[0]  # deletes the first item in column of data
+        # deletes the first item in column of data
+        del location_capacity[0]
+        # returns the capacity list as integers
         capacity_int = list(map(int, location_capacity))
 
         try:
-            attendance_location = (
-                location_index == location_capacity.index)
-            if (attendance_location):
-                if lesson_attendance <= capacity_int:
-                    print("correct")
-                    break
+            print("Please provide the number of students who attended.")
+            lesson_attendance_str = input("Enter student attendance here: ")
+            lesson_attendance = int(lesson_attendance_str)
+
+            # Get the capacity using the index stored in location_index
+            capacity_index = int(location_capacity[location_index])
+            print(capacity_index)
+
+            if lesson_attendance <= capacity_index:
+                print(f"{lesson_attendance} is correct")
+                break
             else:
-                print("incorrect")
+                print(f"{lesson_attendance} is incorrect")
                 print(capacity_int)
-                raise ValueError()
+                print(location_index)
         except ValueError as e:
-            print(location_index)
             print(f"Error: {e}, please try again")
 
 
