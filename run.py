@@ -32,7 +32,7 @@ from the spreadsheet to be used when adding student attendance.
 This will help identify the capacity of the studio and run an error
 if attendance is too high.
 """
-location_index = []
+location_index = 0
 
 
 def lesson_day_data():
@@ -169,9 +169,13 @@ def lesson_location_data():
             del class_location[0]
             if location_data in class_location:
                 print(f"{location_data} is valid \n")
+                # append user input to a list of user inputs
                 new_lesson_data.append(location_data)
+
+                global location_index
+                location_index = 0
                 location_data_index = class_location.index(location_data)
-                location_index.append(location_data_index)
+                location_index = location_data_index
                 break
             else:
                 raise ValueError()
@@ -193,29 +197,22 @@ def lesson_attendance_data():
         # column of capacity data for each location
         location_capacity = capacity.col_values(2)
         del location_capacity[0]  # deletes the first item in column of data
+        capacity_int = list(map(int, location_capacity))
 
         try:
-            attendance_location = location_capacity.index(location_index)
+            attendance_location = (
+                location_index == location_capacity.index)
             if (attendance_location):
-                if lesson_attendance <= location_capacity:
+                if lesson_attendance <= capacity_int:
                     print("correct")
                     break
             else:
                 print("incorrect")
+                print(capacity_int)
                 raise ValueError()
         except ValueError as e:
+            print(location_index)
             print(f"Error: {e}, please try again")
-
-        # FIRST TRY, not finished
-        # lesson_attendance_index = []
-
-        # for i in range(0, len(lesson_capacity)):
-        #     if lesson_capacity[i] == location_data:
-        #         lesson_attendance_index.append(i)
-        #         print(f"{lesson_attendance}")
-        #         break
-        #     else:
-        #         print("incorrect")
 
 
 # def calculate_earnings():
