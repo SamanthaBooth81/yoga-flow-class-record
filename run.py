@@ -192,12 +192,10 @@ def lesson_attendance_data():
 
         # column of capacity data for each location
         location_capacity = capacity.col_values(2)
-        del location_capacity[0]  # delete the first item in column of data
-
-        print(location_capacity.index)
+        del location_capacity[0]  # deletes the first item in column of data
 
         try:
-            attendance_location = (location_capacity.index == location_index)
+            attendance_location = location_capacity.index(location_index)
             if (attendance_location):
                 if lesson_attendance <= location_capacity:
                     print("correct")
@@ -211,8 +209,8 @@ def lesson_attendance_data():
         # FIRST TRY, not finished
         # lesson_attendance_index = []
 
-        # for i in range(0, len(lesson_location)):
-        #     if lesson_location[i] == location_data:
+        # for i in range(0, len(lesson_capacity)):
+        #     if lesson_capacity[i] == location_data:
         #         lesson_attendance_index.append(i)
         #         print(f"{lesson_attendance}")
         #         break
