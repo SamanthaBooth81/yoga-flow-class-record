@@ -41,7 +41,7 @@ def lesson_day_data():
     Return an error if incorrect data submitted
     """
 
-    print("Please provide day of your lesson in full.")
+    print("Please provide the day of your lesson in full.")
     print("Example: monday not mon")
 
     lesson_day = (
@@ -91,10 +91,6 @@ def lesson_date_data():
                     raise ValueError()
         except ValueError as e:
             print(f"invalid data: {e}, please try again \n")
-
-        """
-        HELP! ValueError: not enough values to unpack (expected 3, got 2)
-        """
 
 
 def lesson_time_data():
@@ -153,9 +149,8 @@ def lesson_location_data():
     """
 
     """
-    Used the below link to find out how to find all
-    data in a spreadsheet to compare it to the user
-    input
+    Used the below link to find out how to link to a
+    column of data in a spreadsheet:
     https://docs.gspread.org/en/latest/user-guide.html#getting-a-cell-value
     """
 
@@ -208,6 +203,7 @@ def lesson_attendance_data():
 
             if lesson_attendance <= capacity_index:
                 print(f"{lesson_attendance} is correct")
+                new_lesson_data.append(lesson_attendance)
                 break
             else:
                 print(f"{lesson_attendance} is incorrect")
@@ -243,14 +239,14 @@ def update_attendance_worksheet(data):
 
 
 def lesson_data():
-    # lesson_day_data()
-    # lesson_date_data()
-    # lesson_time_data()
-    # lesson_duration_data()
+    lesson_day_data()
+    lesson_date_data()
+    lesson_time_data()
+    lesson_duration_data()
     lesson_location_data()
     lesson_attendance_data()
-    # data = new_lesson_data
-    # update_attendance_worksheet(data)
+    data = new_lesson_data
+    update_attendance_worksheet(data)
     # calculate_earnings()
 
 
