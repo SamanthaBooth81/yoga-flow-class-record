@@ -21,7 +21,7 @@ capacity = SHEET.worksheet("capacity")
 prices = SHEET.worksheet("prices")
 
 """
-new_lesson_data Adds user input into a list which is pushed back
+new_lesson_data adds user input into a list which is pushed back
 into the spreadsheet when all data is collected.
 """
 new_lesson_data = []
@@ -29,8 +29,8 @@ new_lesson_data = []
 
 def lesson_day_data():
     """
-    Input and validate day data from the user
-    Return an error if incorrect data submitted
+    Input and validate 'day' data from the user and
+    returns an error if incorrect data submitted
     """
 
     print("Please provide the day of your lesson in full.")
@@ -53,7 +53,7 @@ def lesson_day_data():
 
         if day in lesson_day:
             day_data = True
-            print(f"{day} is valid \n")
+            # print(f"{day} is valid \n")
 
         if day_data:
             new_lesson_data.append(input_day)
@@ -64,8 +64,8 @@ def lesson_day_data():
 
 def lesson_date_data():
     """
-    Input and validate date data from the user
-    Return an error if incorrect data submitted
+    Input and validate 'date' data from the user and
+    return an error if incorrect data submitted
     """
 
     while True:
@@ -75,7 +75,7 @@ def lesson_date_data():
         try:
             day, month, year = input_date.split('/')
             if datetime.datetime(int(day), int(month), int(year)):
-                print(f"{input_date} is valid \n")
+                # print(f"{input_date} is valid \n")
                 new_lesson_data.append(input_date)
                 break
             else:
@@ -87,8 +87,8 @@ def lesson_date_data():
 
 def lesson_time_data():
     """
-    Input and validate time data from the user
-    Return an error if incorrect data submitted
+    Input and validate 'time' data from the user and
+    return an error if incorrect data submitted
     """
 
     while True:
@@ -100,7 +100,7 @@ def lesson_time_data():
         try:
             validtime = datetime.datetime.strptime(time_data_str, timeformat)
             if(validtime):
-                print(f"{time_data_str} is valid \n")
+                # print(f"{time_data_str} is valid \n")
                 new_lesson_data.append(time_data_str)
                 break
         except Exception:
@@ -110,8 +110,8 @@ def lesson_time_data():
 
 def lesson_duration_data():
     """
-    Input and validate duration data from the user
-    Return error if incorrect data submitted
+    Input and validate 'duration' data from the user and
+    return error if incorrect data submitted
     """
 
     while True:
@@ -126,7 +126,7 @@ def lesson_duration_data():
             duration_int = list(map(int, class_duration))
 
             if duration_data_str in duration_int:
-                print(f"{duration_data_str} is valid \n")
+                # print(f"{duration_data_str} is valid \n")
                 new_lesson_data.append(duration_data_str)
 
                 """
@@ -147,8 +147,8 @@ def lesson_duration_data():
 
 def lesson_location_data():
     """
-    Input and validate location data from the user
-    Return error if incorrect data submitted
+    Input and validate 'location' data from the user and
+    return error if incorrect data submitted
     """
 
     """
@@ -162,11 +162,12 @@ def lesson_location_data():
         print("For example: Camden Town \n")
         location_data_str = input("Enter your data here: ")
         location_data = location_data_str.title()
+
         try:
             class_location = capacity.col_values(1)
             del class_location[0]
             if location_data in class_location:
-                print(f"{location_data} is valid \n")
+                # print(f"{location_data} is valid \n")
                 # append user input to a list of user inputs
                 new_lesson_data.append(location_data)
 
@@ -184,15 +185,14 @@ def lesson_location_data():
                 break
             else:
                 raise ValueError()
-
         except ValueError:
             print(f"{location_data_str} is invalid \n")
 
 
 def lesson_attendance_data():
     """
-    Input and validate attendance data from the user
-    Return error if incorrect data submitted
+    Input and validate 'attendance' data from the user and
+    return error if incorrect data submitted
     """
     while True:
         # column of capacity data for each location
@@ -209,7 +209,7 @@ def lesson_attendance_data():
             capacity_index = int(location_capacity[location_index])
 
             if lesson_attendance <= capacity_index:
-                print(f"{lesson_attendance} is correct")
+                # print(f"{lesson_attendance} is correct")
                 new_lesson_data.append(lesson_attendance)
 
                 global attendance_total
@@ -225,8 +225,8 @@ def lesson_attendance_data():
 
 def calculate_earnings():
     """
-    Calculate the earnings for that lesson using
-    the attendance and duration input and the price list
+    Calculate the earnings for the lesson using the attendance
+    and duration input by the user and the price list
     on the linked spreadsheet
     """
 
@@ -242,8 +242,8 @@ def calculate_earnings():
 
 def update_attendance_worksheet(data):
     """
-    Push user inputs from the above lesson_
-    functions back into the attendance worksheet
+    Push user inputs and calculations stored in the 
+    new_lesson_data list back into the attendance worksheet
     """
 
     print("Updating worksheet... \n")
