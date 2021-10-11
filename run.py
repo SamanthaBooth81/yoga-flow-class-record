@@ -117,16 +117,27 @@ def lesson_duration_data():
     while True:
         print("Please provide the duration of your lesson in minutes.")
         print("This could be either 45, 60, 90 or 120 minutes. Example: 60")
-        duration_data_str = input("Enter lesson duration here: ")
+        duration_data_str = int(input("Enter lesson duration here: "))
         prices = SHEET.worksheet("prices")
 
         try:
             class_duration = prices.col_values(1)
             del class_duration[0]
+            duration_int = list(map(int, class_duration))
 
-            if duration_data_str in class_duration:
+            if duration_data_str in duration_int:
                 print(f"{duration_data_str} is valid \n")
                 new_lesson_data.append(duration_data_str)
+
+                """
+                duration_index Stores globally the index of the duration
+                input by the user from the list pulled from the worksheet.
+                This will be used when calculating earnings for that lesson.
+                """
+                global duration_index
+                duration_index = 0
+                duration_data_index = duration_int.index(duration_data_str)
+                duration_index = duration_data_index
                 break
             else:
                 raise Exception()
@@ -188,8 +199,6 @@ def lesson_attendance_data():
         location_capacity = capacity.col_values(2)
         # deletes the first item in column of data
         del location_capacity[0]
-        # returns the capacity list as integers
-        # capacity_int = list(map(int, location_capacity))
 
         try:
             print("Please provide the number of students who attended.")
@@ -198,16 +207,18 @@ def lesson_attendance_data():
 
             # Get the capacity using the index stored in location_index
             capacity_index = int(location_capacity[location_index])
-            print(capacity_index)
 
             if lesson_attendance <= capacity_index:
                 print(f"{lesson_attendance} is correct")
                 new_lesson_data.append(lesson_attendance)
+
+                global attendance_total
+                attendance_total = 0
+                attendance_input = lesson_attendance
+                attendance_total = attendance_input
                 break
             else:
                 print(f"{lesson_attendance} is incorrect")
-                # print(capacity_int)
-                print(location_index)
         except ValueError as e:
             print(f"Error: {e}, please try again")
 
@@ -221,18 +232,12 @@ def calculate_earnings():
 
     lesson_price = prices.col_values(2)
     del lesson_price[0]
-    print(lesson_price)
 
-    # price_index = int(lesson_price[duration_index])
+    price = int(lesson_price[duration_index])
 
-    # print(price_index)
+    lesson_earnings = price * attendance_total
 
-    # new_lesson_data.append(calculated_earnings)
-
-    # global duration_index
-    # duration_index = 0
-    # duration_data_index = lesson_price.index(duration_index)
-    # duration_index = duration_data_index
+    new_lesson_data.append(lesson_earnings)
 
 
 def update_attendance_worksheet(data):
@@ -249,15 +254,15 @@ def update_attendance_worksheet(data):
 
 
 def lesson_data():
-    # lesson_day_data()
-    # lesson_date_data()
-    # lesson_time_data()
+    lesson_day_data()
+    lesson_date_data()
+    lesson_time_data()
     lesson_duration_data()
-    # lesson_location_data()
-    # lesson_attendance_data()
-    # data = new_lesson_data
-    # update_attendance_worksheet(data)
+    lesson_location_data()
+    lesson_attendance_data()
+    data = new_lesson_data
     calculate_earnings()
+    update_attendance_worksheet(data)
 
 
 lesson_data()
