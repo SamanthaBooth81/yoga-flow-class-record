@@ -116,5 +116,9 @@ No bugs found.
 
 I used [Stack Overflow](https://stackoverflow.com/questions/3944655/testing-user-input-against-a-list-in-python) to test user input against the lesson_day list.
 
+I used [Stack Overflow](https://stackoverflow.com/questions/3944655/testing-user-input-against-a-list-in-python) to help with the while loop when writing the lesson day function. 
+
+I used this [Gspread Documentation](https://docs.gspread.org/en/latest/user-guide.html#getting-a-cell-value) to find out how to link to a column of data in a spreadsheet.
+
 # Acknowledgments
 Thank you to all who encouraged and supported me as I created my first game, espcially to my mentor for his guidance and patience. 
