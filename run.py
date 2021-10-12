@@ -1,10 +1,9 @@
 """
 Below code required to link into google sheets spreadsheet
 """
+import datetime
 import gspread
 from google.oauth2.service_account import Credentials
-import datetime
-
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -53,9 +52,10 @@ def lesson_day_data():
 
         if day in lesson_day:
             day_data = True
-            # print(f"{day} is valid \n")
+            print("\n")
 
         if day_data:
+            # append user input to a list of user inputs
             new_lesson_data.append(input_day)
             break
         else:
@@ -75,7 +75,8 @@ def lesson_date_data():
         try:
             day, month, year = input_date.split('/')
             if datetime.datetime(int(day), int(month), int(year)):
-                # print(f"{input_date} is valid \n")
+                print("\n")
+                # append user input to a list of user inputs
                 new_lesson_data.append(input_date)
                 break
             else:
@@ -100,12 +101,14 @@ def lesson_time_data():
         try:
             validtime = datetime.datetime.strptime(time_data_str, timeformat)
             if(validtime):
-                # print(f"{time_data_str} is valid \n")
+                print("\n")
+                # append user input to a list of user inputs
                 new_lesson_data.append(time_data_str)
                 break
-        except Exception:
-            print(f"{time_data_str} is incorrect")
-            print("time should be input in 00:00 format \n")
+            raise ValueError()
+        except ValueError as e:
+            print(f"{e}")
+            print("Please try again in 00:00 format \n")
 
 
 def lesson_duration_data():
@@ -118,7 +121,7 @@ def lesson_duration_data():
         print("Please provide the duration of your lesson in minutes.")
         print("This could be either 45, 60, 90 or 120 minutes. Example: 60")
         duration_data_str = int(input("Enter lesson duration here: "))
-        prices = SHEET.worksheet("prices")
+        # prices = SHEET.worksheet("prices")
 
         try:
             class_duration = prices.col_values(1)
@@ -126,7 +129,8 @@ def lesson_duration_data():
             duration_int = list(map(int, class_duration))
 
             if duration_data_str in duration_int:
-                # print(f"{duration_data_str} is valid \n")
+                print("\n")
+                # append user input to a list of user inputs
                 new_lesson_data.append(duration_data_str)
 
                 """
@@ -140,9 +144,9 @@ def lesson_duration_data():
                 duration_index = duration_data_index
                 break
             else:
-                raise Exception()
-        except Exception:
-            print("invalid data, please try again \n")
+                raise ValueError()
+        except ValueError as e:
+            print(f"invalid data: {e} please try again \n")
 
 
 def lesson_location_data():
@@ -159,7 +163,7 @@ def lesson_location_data():
 
     while True:
         print("Please provide the location of your lesson.")
-        print("For example: Camden Town \n")
+        print("For example: Camden Town")
         location_data_str = input("Enter your data here: ")
         location_data = location_data_str.title()
 
@@ -167,7 +171,7 @@ def lesson_location_data():
             class_location = capacity.col_values(1)
             del class_location[0]
             if location_data in class_location:
-                # print(f"{location_data} is valid \n")
+                print("\n")
                 # append user input to a list of user inputs
                 new_lesson_data.append(location_data)
 
@@ -209,7 +213,8 @@ def lesson_attendance_data():
             capacity_index = int(location_capacity[location_index])
 
             if lesson_attendance <= capacity_index:
-                # print(f"{lesson_attendance} is correct")
+                print("\n")
+                # append user input to a list of user inputs
                 new_lesson_data.append(lesson_attendance)
 
                 global attendance_total
@@ -237,16 +242,19 @@ def calculate_earnings():
 
     lesson_earnings = price * attendance_total
 
+    print(f"The total earnings made for this class is: £{lesson_earnings} \n")
+    # append calculation to a list of user inputs
     new_lesson_data.append(lesson_earnings)
 
 
 def update_attendance_worksheet(data):
     """
-    Push user inputs and calculations stored in the 
+    Push user inputs and calculations stored in the
     new_lesson_data list back into the attendance worksheet
     """
 
     print("Updating worksheet... \n")
+    # appends user inputs and calulations into the attendance worksheet
     worksheet_update = SHEET.worksheet("attendance")
     worksheet_update.append_row(data)
 
@@ -254,6 +262,9 @@ def update_attendance_worksheet(data):
 
 
 def lesson_data():
+    """
+    Runs all the functions
+    """
     lesson_day_data()
     lesson_date_data()
     lesson_time_data()
