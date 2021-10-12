@@ -29,7 +29,10 @@ new_lesson_data = []
 def lesson_day_data():
     """
     Input and validate 'day' data from the user and
-    returns an error if incorrect data submitted
+    returns an error if incorrect data submitted.
+
+    I used the Stack Overflow to help with the below while loop.
+    Page linked in the Readme file.
     """
 
     print("Please provide the day of your lesson in full.")
@@ -39,10 +42,6 @@ def lesson_day_data():
         "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
         "Saturday", "Sunday")
 
-    """
-    I used the following webpage helped with the while loop:
-    https://stackoverflow.com/questions/3944655/testing-user-input-against-a-list-in-python
-    """
     while True:
         day_data_str = input("Enter lesson day here: ")
         input_day = day_data_str.title()
@@ -132,13 +131,10 @@ def lesson_duration_data():
                 # append user input to a list of user inputs
                 new_lesson_data.append(duration_data_str)
 
-                """
-                duration_index Stores globally the index
-                of the duration input by the user from the
-                list pulled from the worksheet. This will
-                be used when calculating earnings for that
-                lesson.
-                """
+                # duration_index Stores globally the index
+                # of the duration input by the user from the
+                # list pulled from the worksheet. This will
+                # be used when calculating earnings for that lesson.
                 global duration_index
                 duration_index = 0
                 duration_data_index = duration_int.index(duration_data_str)
@@ -154,9 +150,7 @@ def lesson_location_data():
     """
     Input and validate 'location' data from the user and
     return error if incorrect data submitted
-    """
 
-    """
     Used the below link to find out how to link to a
     column of data in a spreadsheet:
     https://docs.gspread.org/en/latest/user-guide.html#getting-a-cell-value
@@ -176,13 +170,12 @@ def lesson_location_data():
                 # append user input to a list of user inputs
                 new_lesson_data.append(location_data)
 
-                """
-                location_index Stores globally the index of the location
-                input by the user from the list pulled from the worksheet.
-                This will be used when inputting student attendance to
-                identify the capacity of the studio and run an error if
-                attendance input is too high.
-                """
+                # location_index Stores globally the index of the location
+                # input by the user from the list pulled from the worksheet.
+                # This will be used when inputting student attendance to
+                # identify the capacity of the studio and run an error if
+                # attendance input is too high.
+
                 global location_index
                 location_index = 0
                 location_data_index = class_location.index(location_data)
@@ -265,8 +258,7 @@ def update_attendance_worksheet(data):
 
 
 def lesson_data():
-    """
-    Runs all the functions
+    """ Runs all the functions
     """
     lesson_day_data()
     lesson_date_data()
@@ -281,6 +273,9 @@ def lesson_data():
 
 
 def add_more_data():
+    """ Loops back to the beginning if
+    the user has more data to add.
+    """
     print("Do you want to add more data?")
     add_data = input("Input Y for yes and N for no:")
     new_data = add_data.upper()
