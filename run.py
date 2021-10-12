@@ -80,7 +80,7 @@ def lesson_date_data():
                 new_lesson_data.append(input_date)
                 break
             else:
-                if day > 31:
+                if int(day) > 31:
                     raise ValueError()
         except ValueError as e:
             print(f"invalid data: {e}, please try again \n")
@@ -99,13 +99,13 @@ def lesson_time_data():
         timeformat = ("%H:%M")
 
         try:
-            validtime = datetime.datetime.strptime(time_data_str, timeformat)
-            if(validtime):
+            validtime = datetime.datetime.strptime(
+                time_data_str, timeformat)
+            if validtime:
                 print("\n")
                 # append user input to a list of user inputs
                 new_lesson_data.append(time_data_str)
                 break
-            raise ValueError()
         except ValueError as e:
             print(f"{e}")
             print("Please try again in 00:00 format \n")
@@ -119,9 +119,8 @@ def lesson_duration_data():
 
     while True:
         print("Please provide the duration of your lesson in minutes.")
-        print("This could be either 45, 60, 90 or 120 minutes. Example: 60")
+        print("Example: 60")
         duration_data_str = int(input("Enter lesson duration here: "))
-        # prices = SHEET.worksheet("prices")
 
         try:
             class_duration = prices.col_values(1)
@@ -134,9 +133,11 @@ def lesson_duration_data():
                 new_lesson_data.append(duration_data_str)
 
                 """
-                duration_index Stores globally the index of the duration
-                input by the user from the list pulled from the worksheet.
-                This will be used when calculating earnings for that lesson.
+                duration_index Stores globally the index
+                of the duration input by the user from the
+                list pulled from the worksheet. This will
+                be used when calculating earnings for that
+                lesson.
                 """
                 global duration_index
                 duration_index = 0
@@ -206,7 +207,8 @@ def lesson_attendance_data():
 
         try:
             print("Please provide the number of students who attended.")
-            lesson_attendance_str = input("Enter student attendance here: ")
+            lesson_attendance_str = input(
+                "Enter student attendance here: ")
             lesson_attendance = int(lesson_attendance_str)
 
             # Get the capacity using the index stored in location_index
@@ -242,7 +244,8 @@ def calculate_earnings():
 
     lesson_earnings = price * attendance_total
 
-    print(f"The total earnings made for this class is: £{lesson_earnings} \n")
+    print(
+        f"The earnings made for this class is: £{lesson_earnings} \n")
     # append calculation to a list of user inputs
     new_lesson_data.append(lesson_earnings)
 
@@ -274,6 +277,21 @@ def lesson_data():
     data = new_lesson_data
     calculate_earnings()
     update_attendance_worksheet(data)
+    return add_more_data()
+
+
+def add_more_data():
+    print("Do you want to add more data?")
+    add_data = input("Input Y for yes and N for no:")
+    new_data = add_data.upper()
+    while True:
+        if new_data == "Y":
+            new_lesson_data.clear()
+            print("\n")
+            return lesson_data()
+        else:
+            print("\nThank you, goodbye...")
+            break
 
 
 lesson_data()
