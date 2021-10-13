@@ -36,6 +36,7 @@ def lesson_day_data():
     Page linked in the Readme file.
     """
 
+    print("Hello, welcome to Yoga Flow Class Record.\n")
     print("Please provide the day of your lesson in full.")
     print("Example: monday not mon")
 
@@ -274,7 +275,7 @@ def add_more_data():
     """ Loops back to the beginning if
     the user has more data to add.
     """
-    add_data = input("Do you want to add more data? [Y/N]:")
+    add_data = input("Do you want to add more data? [y/n]:")
     new_data = add_data.upper()
     while True:
         if new_data == "Y":
