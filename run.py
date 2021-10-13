@@ -25,6 +25,7 @@ new_lesson_data adds user input into a list which is pushed back
 into the spreadsheet when all data is collected.
 """
 new_lesson_data = []
+print("Hello, welcome to Yoga Flow Class Record.\n")
 
 
 def lesson_day_data():
@@ -36,7 +37,6 @@ def lesson_day_data():
     Page linked in the Readme file.
     """
 
-    print("Hello, welcome to Yoga Flow Class Record.\n")
     print("Please provide the day of your lesson in full.")
     print("Example: monday not mon")
 
@@ -60,7 +60,7 @@ def lesson_day_data():
             new_lesson_data.append(input_day)
             break
         else:
-            print("Incorrect data, please choose a day in the week \n")
+            print("Invalid data, please choose a day in the week \n")
 
 
 def lesson_date_data():
@@ -81,7 +81,7 @@ def lesson_date_data():
                 new_lesson_data.append(input_date)
                 break
         except ValueError as e:
-            print(f"invalid data: {e}, please try again \n")
+            print(f"Invalid data: {e}, please try again \n")
 
 
 def lesson_time_data():
@@ -105,8 +105,8 @@ def lesson_time_data():
                 new_lesson_data.append(time_data_str)
                 break
         except ValueError as e:
-            print(f"{e}")
-            print("Please try again in 00:00 format \n")
+            print(f"Invalid data: {e} \n")
+            # print("Please try again in 00:00 format \n")
 
 
 def lesson_duration_data():
@@ -118,9 +118,8 @@ def lesson_duration_data():
     while True:
         print("Please provide the duration of your lesson in minutes.")
         print("Example: 60")
-        duration_data_str = int(input("Enter lesson duration here: "))
-
         try:
+            duration_data_str = int(input("Enter lesson duration here: "))
             class_duration = prices.col_values(1)
             del class_duration[0]
             duration_int = list(map(int, class_duration))
@@ -140,9 +139,9 @@ def lesson_duration_data():
                 duration_index = duration_data_index
                 break
             else:
-                raise ValueError()
+                print(f"{duration_data_str} is not a valid duration\n")
         except ValueError as e:
-            print(f"invalid data: {e} please try again \n")
+            print(f"invalid data: {e}please try again \n")
 
 
 def lesson_location_data():
@@ -183,7 +182,7 @@ def lesson_location_data():
             else:
                 raise ValueError()
         except ValueError:
-            print(f"{location_data_str} is invalid \n")
+            print(f"Invalid data: {location_data_str}, please try again\n")
 
 
 def lesson_attendance_data():
@@ -206,20 +205,29 @@ def lesson_attendance_data():
             # Get the capacity using the index stored in location_index
             capacity_index = int(location_capacity[location_index])
 
+            global attendance_total
+            attendance_total = 0
+            attendance_input = lesson_attendance
+            attendance_total = attendance_input
+
             if lesson_attendance <= capacity_index:
-                print("\n")
+                # print("\n")
                 # append user input to a list of user inputs
                 new_lesson_data.append(lesson_attendance)
-
-                global attendance_total
-                attendance_total = 0
-                attendance_input = lesson_attendance
-                attendance_total = attendance_input
                 break
             else:
-                print(f"{lesson_attendance} is incorrect")
+                while True:
+                    print(f"{lesson_attendance} is above studio capacity\n")
+                    higher_capacity = input("Do you wish to continue [y/n]?")
+                    add_higher_cap = higher_capacity.upper()
+                    while True:
+                        if add_higher_cap == "Y":
+                            new_lesson_data.append(lesson_attendance)
+                            return False
+                        else:
+                            return lesson_attendance_data()
         except ValueError as e:
-            print(f"Error: {e}, please try again")
+            print(f"Data invalid: {e}, please try again\n")
 
 
 def calculate_earnings():
@@ -237,7 +245,7 @@ def calculate_earnings():
     lesson_earnings = price * attendance_total
 
     print(
-        f"The earnings made for this class is: £{lesson_earnings} \n")
+        f"\nThe earnings made for this class is: £{lesson_earnings} \n")
     # append calculation to a list of user inputs
     new_lesson_data.append(lesson_earnings)
 
@@ -253,7 +261,7 @@ def update_attendance_worksheet(data):
     worksheet_update = SHEET.worksheet("attendance")
     worksheet_update.append_row(data)
 
-    print("Attendance worksheet updated")
+    print("Attendance worksheet updated \n")
 
 
 def lesson_data():
@@ -275,7 +283,7 @@ def add_more_data():
     """ Loops back to the beginning if
     the user has more data to add.
     """
-    add_data = input("Do you want to add more data? [y/n]:")
+    add_data = input("Do you want to add more data [y/n]?")
     new_data = add_data.upper()
     while True:
         if new_data == "Y":
