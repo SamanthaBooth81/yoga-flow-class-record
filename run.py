@@ -2,6 +2,7 @@
 Below code required to link into google sheets spreadsheet
 """
 import datetime
+from datetime import date
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -66,21 +67,18 @@ def lesson_date_data():
     Input and validate 'date' data from the user and
     return an error if incorrect data submitted
     """
-
     while True:
         print("Please input the date of your lesson.")
         input_date = input("Enter the date in format 'dd/mm/yy': ")
 
         try:
             day, month, year = input_date.split('/')
-            if datetime.datetime(int(day), int(month), int(year)):
+            my_date = date(int(year), int(month), int(day))
+            if my_date:
                 print("\n")
                 # append user input to a list of user inputs
                 new_lesson_data.append(input_date)
                 break
-            else:
-                if int(day) > 31:
-                    raise ValueError()
         except ValueError as e:
             print(f"invalid data: {e}, please try again \n")
 
@@ -276,8 +274,7 @@ def add_more_data():
     """ Loops back to the beginning if
     the user has more data to add.
     """
-    print("Do you want to add more data?")
-    add_data = input("Input Y for yes and N for no:")
+    add_data = input("Do you want to add more data? [Y/N]:")
     new_data = add_data.upper()
     while True:
         if new_data == "Y":
@@ -285,7 +282,7 @@ def add_more_data():
             print("\n")
             return lesson_data()
         else:
-            print("\nThank you, goodbye...")
+            print("\nThank you, goodbye for now...")
             break
 
 
