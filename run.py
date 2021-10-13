@@ -211,7 +211,6 @@ def lesson_attendance_data():
             attendance_total = attendance_input
 
             if lesson_attendance <= capacity_index:
-                # print("\n")
                 # append user input to a list of user inputs
                 new_lesson_data.append(lesson_attendance)
                 break
