@@ -27,6 +27,7 @@ SHEET = GSPREAD_CLIENT.open('yoga _flow_class_record')
 
 capacity = SHEET.worksheet("capacity")
 prices = SHEET.worksheet("prices")
+worksheet_update = SHEET.worksheet("attendance")
 
 """
 new_lesson_data adds user input into a list which is pushed back
@@ -55,7 +56,9 @@ def lesson_day_data():
         "Saturday", "Sunday")
 
     while True:
+        print(Fore.CYAN)
         day_data_str = input("Enter lesson day here: ")
+        print("\033[39m")
         input_day = day_data_str.title()
         day = str(input_day)
 
@@ -85,8 +88,10 @@ def lesson_date_data():
     links used have been added to the README file.
     """
     while True:
-        print("Please input the date of your lesson")
+        print("Please input the date of your lesson.")
+        print(Fore.CYAN)
         input_date = input("Enter the date in format 'dd/mm/yy': ")
+        print("\033[39m")
 
         try:
             day, month, year = input_date.split('/')
@@ -111,7 +116,9 @@ def lesson_time_data():
 
     while True:
         print("Please provide time (00:00) of your lesson.")
+        print(Fore.CYAN)
         time_data_str = input("Enter time here: ")
+        print("\033[39m")
 
         timeformat = ("%H:%M")
 
@@ -142,7 +149,9 @@ def lesson_duration_data():
         print("Please provide the duration of your lesson in minutes.")
         print("Example: 60")
         try:
+            print(Fore.CYAN)
             duration_data_str = int(input("Enter lesson duration here: "))
+            print("\033[39m")
 
             lesson_durations = prices.col_values(1)
             del lesson_durations[0]
@@ -186,7 +195,9 @@ def lesson_location_data():
     while True:
         print("Please provide the location of your lesson.")
         print("For example: Camden Town")
+        print(Fore.CYAN)
         location_data_str = input("Enter your data here: ")
+        print("\033[39m")
         location_data = location_data_str.title()
 
         try:
@@ -229,8 +240,10 @@ def lesson_attendance_data():
 
         try:
             print("Please provide the number of students who attended.")
+            print(Fore.CYAN)
             lesson_attendance_str = input(
                 "Enter student attendance here: ")
+            print("\033[39m")
             lesson_attendance = int(lesson_attendance_str)
 
             # Get the capacity using the index stored in location_index
@@ -278,9 +291,8 @@ def calculate_earnings():
 
     lesson_earnings = price * attendance_total
 
-    print(Fore.GREEN)
     print(
-        f"\nThe earnings made for this class is: £{lesson_earnings}")
+        f"\nTotal earnings for this class is: {Fore.GREEN}£{lesson_earnings}")
     print("\033[39m")
     # append calculation to a list of user inputs
     new_lesson_data.append(lesson_earnings)
@@ -295,7 +307,6 @@ def update_attendance_worksheet(data):
     print(Fore.BLUE)
     print("Updating worksheet... \n")
     # appends user inputs and calulations into the attendance worksheet
-    worksheet_update = SHEET.worksheet("attendance")
     worksheet_update.append_row(data)
 
     print("Attendance worksheet updated \n")
@@ -325,7 +336,9 @@ def add_more_data():
     the code below:
     https://maschituts.com/2-ways-to-loop-back-to-the-beginning-of-a-program-in-python/
     """
+    print(Fore.CYAN)
     add_data = input("Do you want to add more data [y/n]?")
+    print("\033[39m")
     new_data = add_data.upper()
     while True:
         if new_data == "Y":
@@ -333,9 +346,25 @@ def add_more_data():
             print("\n")
             return lesson_data()
         else:
-            print(Fore.LIGHTMAGENTA_EX)
-            print("\nThank you, goodbye for now...\n")
+            print("\n")
             break
 
 
+def calculate_total_earnings():
+    """
+    Return to the user their total earnings so far.
+    """
+    all_earnings = worksheet_update.col_values(7)
+    del all_earnings[0]
+    all_earnings_int = list(map(int, all_earnings))
+
+    earnings_total = sum(all_earnings_int)
+    print(f"\nTotal earnings to date: {Fore.GREEN}£{earnings_total}")
+    print("\033[39m")
+    print(Fore.LIGHTMAGENTA_EX)
+    print("Thank you, goodbye for now...")
+    print("\033[39m")
+
+
 lesson_data()
+calculate_total_earnings()
