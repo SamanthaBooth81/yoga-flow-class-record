@@ -6,7 +6,7 @@ from datetime import date
 import gspread
 from google.oauth2.service_account import Credentials
 import colorama
-from colorama import Fore, Style
+from colorama import Fore
 colorama.init()
 
 SCOPE = [
