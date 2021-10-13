@@ -1,10 +1,13 @@
 """
-Below code required to link into google sheets spreadsheet
+Below code required to link into google sheets spreadsheet and datetime
 """
 import datetime
 from datetime import date
 import gspread
 from google.oauth2.service_account import Credentials
+import colorama
+from colorama import Fore, Style
+colorama.init()
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -25,7 +28,9 @@ new_lesson_data adds user input into a list which is pushed back
 into the spreadsheet when all data is collected.
 """
 new_lesson_data = []
+print(Fore.LIGHTMAGENTA_EX)
 print("Hello, welcome to Yoga Flow Class Record.\n")
+print("\033[39m")
 
 
 def lesson_day_data():
@@ -60,7 +65,10 @@ def lesson_day_data():
             new_lesson_data.append(input_day)
             break
         else:
-            print("Invalid data, please choose a day in the week \n")
+            print(Fore.RED)
+            print(f"{Fore.RED}Invalid data: {day}")
+            print("\033[39m")
+            print("Please input a day in the week")
 
 
 def lesson_date_data():
@@ -69,7 +77,7 @@ def lesson_date_data():
     return an error if incorrect data submitted
     """
     while True:
-        print("Please input the date of your lesson.")
+        print("Please input the date of your lesson")
         input_date = input("Enter the date in format 'dd/mm/yy': ")
 
         try:
@@ -81,7 +89,10 @@ def lesson_date_data():
                 new_lesson_data.append(input_date)
                 break
         except ValueError as e:
-            print(f"Invalid data: {e}, please try again \n")
+            print(Fore.RED)
+            print(f"Invalid data: {e}")
+            print("\033[39m")
+            print("Please try again \n")
 
 
 def lesson_time_data():
@@ -105,8 +116,8 @@ def lesson_time_data():
                 new_lesson_data.append(time_data_str)
                 break
         except ValueError as e:
-            print(f"Invalid data: {e} \n")
-            # print("Please try again in 00:00 format \n")
+            print(f"{Fore.RED}Invalid data: {e} \n")
+            print("\033[39m")
 
 
 def lesson_duration_data():
@@ -139,9 +150,12 @@ def lesson_duration_data():
                 duration_index = duration_data_index
                 break
             else:
+                print(Fore.RED)
                 print(f"{duration_data_str} is not a valid duration\n")
+                print("\033[39m")
         except ValueError as e:
-            print(f"invalid data: {e}please try again \n")
+            print(f"{Fore.RED}invalid data: {e}please try again \n")
+            print("\033[39m")
 
 
 def lesson_location_data():
@@ -182,7 +196,9 @@ def lesson_location_data():
             else:
                 raise ValueError()
         except ValueError:
+            print(Fore.RED)
             print(f"Invalid data: {location_data_str}, please try again\n")
+            print("\033[39m")
 
 
 def lesson_attendance_data():
@@ -216,9 +232,11 @@ def lesson_attendance_data():
                 break
             else:
                 while True:
+                    print(Fore.YELLOW)
                     print(f"{lesson_attendance} is above studio capacity\n")
                     higher_capacity = input("Do you wish to continue [y/n]?")
                     add_higher_cap = higher_capacity.upper()
+                    print("\033[39m")
                     while True:
                         if add_higher_cap == "Y":
                             new_lesson_data.append(lesson_attendance)
@@ -226,7 +244,9 @@ def lesson_attendance_data():
                         else:
                             return lesson_attendance_data()
         except ValueError as e:
+            print(Fore.RED)
             print(f"Data invalid: {e}, please try again\n")
+            print("\033[39m")
 
 
 def calculate_earnings():
@@ -243,8 +263,10 @@ def calculate_earnings():
 
     lesson_earnings = price * attendance_total
 
+    print(Fore.GREEN)
     print(
-        f"\nThe earnings made for this class is: £{lesson_earnings} \n")
+        f"\nThe earnings made for this class is: £{lesson_earnings}")
+    print("\033[39m")
     # append calculation to a list of user inputs
     new_lesson_data.append(lesson_earnings)
 
@@ -255,12 +277,14 @@ def update_attendance_worksheet(data):
     new_lesson_data list back into the attendance worksheet
     """
 
+    print(Fore.BLUE)
     print("Updating worksheet... \n")
     # appends user inputs and calulations into the attendance worksheet
     worksheet_update = SHEET.worksheet("attendance")
     worksheet_update.append_row(data)
 
     print("Attendance worksheet updated \n")
+    print("\033[39m")
 
 
 def lesson_data():
@@ -290,7 +314,8 @@ def add_more_data():
             print("\n")
             return lesson_data()
         else:
-            print("\nThank you, goodbye for now...")
+            print(Fore.LIGHTMAGENTA_EX)
+            print("\nThank you, goodbye for now...\n")
             break
 
 
