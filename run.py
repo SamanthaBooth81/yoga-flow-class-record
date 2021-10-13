@@ -1,5 +1,6 @@
 """
-Below code required to link into google sheets spreadsheet and datetime
+Below code required to link into google sheets spreadsheet,
+datetime and colorama for styllign the terminal
 """
 import datetime
 from datetime import date
