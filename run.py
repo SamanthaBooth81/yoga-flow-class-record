@@ -1,6 +1,10 @@
 """
 Below code required to link into google sheets spreadsheet,
-datetime and colorama for styllign the terminal
+datetime and colorama for styllign the terminal.
+
+I used the following YouTube video to find out how
+to use Colorama:
+https://www.youtube.com/watch?v=u51Zjlnui4Y
 """
 import datetime
 from datetime import date
@@ -75,7 +79,10 @@ def lesson_day_data():
 def lesson_date_data():
     """
     Input and validate 'date' data from the user and
-    return an error if incorrect data submitted
+    return an error if incorrect data submitted.
+
+    I used Stack Overflow to help with this function. The
+    links used have been added to the README file.
     """
     while True:
         print("Please input the date of your lesson")
@@ -125,6 +132,10 @@ def lesson_duration_data():
     """
     Input and validate 'duration' data from the user and
     return error if incorrect data submitted
+
+    Used the following website to help with using the
+    Global keyword:
+    https://www.w3schools.com/python/python_variables_global.asp
     """
 
     while True:
@@ -132,9 +143,12 @@ def lesson_duration_data():
         print("Example: 60")
         try:
             duration_data_str = int(input("Enter lesson duration here: "))
-            class_duration = prices.col_values(1)
-            del class_duration[0]
-            duration_int = list(map(int, class_duration))
+
+            lesson_durations = prices.col_values(1)
+            del lesson_durations[0]
+            # Used method 3 to turn a list of strings into a list of integers
+            # https://www.geeksforgeeks.org/python-converting-all-strings-in-list-to-integers/
+            duration_int = list(map(int, lesson_durations))
 
             if duration_data_str in duration_int:
                 print("\n")
@@ -176,9 +190,9 @@ def lesson_location_data():
         location_data = location_data_str.title()
 
         try:
-            class_location = capacity.col_values(1)
-            del class_location[0]
-            if location_data in class_location:
+            location_col = capacity.col_values(1)
+            del location_col[0]
+            if location_data in location_col:
                 print("\n")
                 # append user input to a list of user inputs
                 new_lesson_data.append(location_data)
@@ -191,7 +205,7 @@ def lesson_location_data():
 
                 global location_index
                 location_index = 0
-                location_data_index = class_location.index(location_data)
+                location_data_index = location_col.index(location_data)
                 location_index = location_data_index
                 break
             else:
@@ -306,6 +320,10 @@ def lesson_data():
 def add_more_data():
     """ Loops back to the beginning if
     the user has more data to add.
+
+    Used the following website to help write
+    the code below:
+    https://maschituts.com/2-ways-to-loop-back-to-the-beginning-of-a-program-in-python/
     """
     add_data = input("Do you want to add more data [y/n]?")
     new_data = add_data.upper()
