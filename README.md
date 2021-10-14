@@ -138,4 +138,4 @@ I used [Stack Overflow](https://stackoverflow.com/questions/3944655/testing-user
 I used this [Gspread Documentation](https://docs.gspread.org/en/latest/user-guide.html#getting-a-cell-value) to find out how to link to a column of data in a spreadsheet.
 
 # Acknowledgments
-Thank you to all who encouraged and supported me as I created my first game, espcially to my mentor for his guidance and patience. 
+Thank you to all who encouraged and supported me as I created my first game, espcially to my mentor for his guidance and patience and tutor support at The Code Institute who helped when I was stuck. 
