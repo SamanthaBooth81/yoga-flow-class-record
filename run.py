@@ -57,7 +57,7 @@ def lesson_day_data():
 
     while True:
         print(Fore.CYAN)
-        day_data_str = input("Enter lesson day here: ")
+        day_data_str = input("Enter lesson day here:\n")
         print("\033[39m")
         input_day = day_data_str.title()
         day = str(input_day)
@@ -90,7 +90,7 @@ def lesson_date_data():
     while True:
         print("Please input the date of your lesson.")
         print(Fore.CYAN)
-        input_date = input("Enter the date in format 'dd/mm/yy': ")
+        input_date = input("Enter the date in format 'dd/mm/yy':\n")
         print("\033[39m")
 
         try:
@@ -117,7 +117,7 @@ def lesson_time_data():
     while True:
         print("Please provide time (00:00) of your lesson.")
         print(Fore.CYAN)
-        time_data_str = input("Enter time here: ")
+        time_data_str = input("Enter time here:\n")
         print("\033[39m")
 
         timeformat = ("%H:%M")
@@ -150,7 +150,7 @@ def lesson_duration_data():
         print("Example: 60")
         try:
             print(Fore.CYAN)
-            duration_data_str = int(input("Enter lesson duration here: "))
+            duration_data_str = int(input("Enter lesson duration here:\n"))
             print("\033[39m")
 
             lesson_durations = prices.col_values(1)
@@ -196,7 +196,7 @@ def lesson_location_data():
         print("Please provide the location of your lesson.")
         print("For example: Camden Town")
         print(Fore.CYAN)
-        location_data_str = input("Enter your data here: ")
+        location_data_str = input("Enter your data here:\n")
         print("\033[39m")
         location_data = location_data_str.title()
 
@@ -242,7 +242,7 @@ def lesson_attendance_data():
             print("Please provide the number of students who attended.")
             print(Fore.CYAN)
             lesson_attendance_str = input(
-                "Enter student attendance here: ")
+                "Enter student attendance here:\n")
             print("\033[39m")
             lesson_attendance = int(lesson_attendance_str)
 
@@ -262,7 +262,7 @@ def lesson_attendance_data():
                 while True:
                     print(Fore.YELLOW)
                     print(f"{lesson_attendance} is above studio capacity\n")
-                    higher_capacity = input("Do you wish to continue [y/n]?")
+                    higher_capacity = input("Do you wish to continue [y/n]?\n")
                     add_higher_cap = higher_capacity.upper()
                     print("\033[39m")
                     while True:
@@ -337,7 +337,7 @@ def add_more_data():
     https://maschituts.com/2-ways-to-loop-back-to-the-beginning-of-a-program-in-python/
     """
     print(Fore.CYAN)
-    add_data = input("Do you want to add more data [y/n]?")
+    add_data = input("Do you want to add more data [y/n]?\n")
     print("\033[39m")
     new_data = add_data.upper()
     while True:
