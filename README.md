@@ -45,21 +45,21 @@ It is made with the intention of helping a small business owner keep their finan
 
 # Features
 ## Input Data
-- Input of lesson data including:
-    * Day
-    * Date
-    * Time
+Input of lesson data including:
+1. Day
+2. Date
+3. Time
 
 <img src="assets/images/terminal_1.png" height="250px"> 
 <img src="assets/images/heroku_deployment_10.png" height="250px"> 
 
 
-    * Duration
-    * Location 
+4. Duration
+5. Location 
 
 <img src="assets/images/terminal_2.png" height="300px"> 
 
-    * Attendance and calculations
+6. Attendance and calculations
 
 <img src="assets/images/terminal_3.png" height="300px"> 
 
