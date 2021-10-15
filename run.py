@@ -296,7 +296,7 @@ def calculate_earnings():
     print("\033[39m")
 
     print(
-        f"\nTotal earnings for this class is: {Fore.GREEN}£{lesson_earnings}\n")
+        f"Total earnings for this class is: {Fore.GREEN}£{lesson_earnings} \n")
     print("\033[39m")
     # append calculation to a list of user inputs
     new_lesson_data.append(lesson_earnings)
@@ -313,7 +313,7 @@ def update_attendance_worksheet(data):
     # appends user inputs and calulations into the attendance worksheet
     worksheet_update.append_row(data)
 
-    print("Attendance worksheet updated \n")
+    print("Attendance worksheet updated! \n")
     print("\033[39m")
 
 
@@ -363,7 +363,7 @@ def calculate_total_earnings():
     all_earnings_int = list(map(int, all_earnings))
 
     earnings_total = sum(all_earnings_int)
-    print(f"\nTotal earnings to date: {Fore.GREEN}£{earnings_total}")
+    print(f"Total earnings to date: {Fore.GREEN}£{earnings_total}")
     print("\033[39m")
     print(Fore.LIGHTMAGENTA_EX)
     print("Thank you, goodbye for now...")
