@@ -86,7 +86,7 @@ def lesson_date_data():
     return an error if incorrect data submitted.
 
     I used Stack Overflow to help with this function. The
-    links used have been added to the README file.
+    link used has been added to the README file.
     """
     while True:
         print("Please input the date of your lesson.")
@@ -191,6 +191,10 @@ def lesson_location_data():
     Used the below link to find out how to link to a
     column of data in a spreadsheet:
     https://docs.gspread.org/en/latest/user-guide.html#getting-a-cell-value
+
+    Used the following website to help with using the
+    Global keyword:
+    https://www.w3schools.com/python/python_variables_global.asp
     """
 
     while True:
@@ -232,6 +236,10 @@ def lesson_attendance_data():
     """
     Input and validate 'attendance' data from the user and
     return error if incorrect data submitted
+
+    Used the following website to help with using the
+    Global keyword:
+    https://www.w3schools.com/python/python_variables_global.asp
     """
     while True:
         # column of capacity data for each location
@@ -292,6 +300,9 @@ def calculate_earnings():
 
     lesson_earnings = price * attendance_total
 
+    # I've placed the below print statement here as input
+    # data should not push back into the worksheet if it
+    # isn't valid
     print(f"\n{Fore.LIGHTGREEN_EX}Data input is valid!\n")
     print("\033[39m")
 
@@ -360,6 +371,8 @@ def calculate_total_earnings():
     """
     all_earnings = worksheet_update.col_values(7)
     del all_earnings[0]
+    # Used method 3 to turn a list of strings into a list of integers
+    # https://www.geeksforgeeks.org/python-converting-all-strings-in-list-to-integers/
     all_earnings_int = list(map(int, all_earnings))
 
     earnings_total = sum(all_earnings_int)

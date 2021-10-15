@@ -198,8 +198,21 @@ I used [Stack Overflow](https://stackoverflow.com/questions/3944655/testing-user
 
 I used [Stack Overflow](https://stackoverflow.com/questions/3944655/testing-user-input-against-a-list-in-python) to help with the while loop when writing the lesson day function. 
 
+I used [Stack Overflow](https://stackoverflow.com/questions/5619489/troubleshooting-descriptor-date-requires-a-datetime-datetime-object-but-rec) to aid with ensuring the date can be validated correctly in the lesson_date_data function. 
+
 I used this [Gspread Documentation](https://docs.gspread.org/en/latest/user-guide.html#getting-a-cell-value) to find out how to link to a column of data in a spreadsheet.
 
-I used Lucid Charts to create the logic flow diagram for the project. 
+I used this [Colorama YouTube Video](https://www.youtube.com/watch?v=u51Zjlnui4Y) to find out how to use Colorama to change the text colour seen by the user in the terminal.
+
+I used [Lucid Charts](https://www.lucidchart.com/pages/landing?utm_source=google&utm_medium=cpc&utm_campaign=_chart_en_tier1_mixed_search_brand_exact_&km_CPC_CampaignId=1490375427&km_CPC_AdGroupID=55688909257&km_CPC_Keyword=lucidchart&km_CPC_MatchType=e&km_CPC_ExtensionID=&km_CPC_Network=g&km_CPC_AdPosition=&km_CPC_Creative=442433236001&km_CPC_TargetID=aud-921551090622:kwd-33511936169&km_CPC_Country=20485&km_CPC_Device=c&km_CPC_placement=&km_CPC_target=&mkwid=sSyVrRTB8_pcrid_442433236001_pkw_lucidchart_pmt_e_pdv_c_slid__pgrid_55688909257_ptaid_aud-921551090622:kwd-33511936169_&gclid=CjwKCAjwzaSLBhBJEiwAJSRoku05OBdnovMIM5_WGqDOlz1tGneFNADPmA-AHWOA1e24IRtSwq7X3BoC_fkQAvD_BwE) to create the logic flow diagram for the project. 
+
+I used [W3Schools](https://www.w3schools.com/python/python_variables_global.asp) to help with using the Global keyword. 
+
+I used [Geeks for Geeks](https://www.geeksforgeeks.org/python-dictionary-clear/) to help clear the list of user inputs (that were already pushed into the worksheet) if the user chooses to input more data for another lesson. 
+
+I used [Maschituts](https://maschituts.com/2-ways-to-loop-back-to-the-beginning-of-a-program-in-python/) for with the code to start the programme again if the user has more data to input. 
+
+I used method 3 on this [Geeks for Geeks](https://www.geeksforgeeks.org/python-converting-all-strings-in-list-to-integers/) article to turn a list of strings into a list of integers.
+
 # Acknowledgments
 Thank you to all who encouraged and supported me as I created my first game, espcially to my mentor for his guidance and patience and tutor support at The Code Institute who helped when I was stuck. 
