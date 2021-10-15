@@ -34,6 +34,7 @@ new_lesson_data adds user input into a list which is pushed back
 into the spreadsheet when all data is collected.
 """
 new_lesson_data = []
+
 print(Fore.LIGHTMAGENTA_EX)
 print("Hello, welcome to Yoga Flow Class Record.\n")
 print("\033[39m")
@@ -291,8 +292,11 @@ def calculate_earnings():
 
     lesson_earnings = price * attendance_total
 
+    print(f"\n{Fore.LIGHTGREEN_EX}Data input is valid!\n")
+    print("\033[39m")
+
     print(
-        f"\nTotal earnings for this class is: {Fore.GREEN}£{lesson_earnings}")
+        f"\nTotal earnings for this class is: {Fore.GREEN}£{lesson_earnings}\n")
     print("\033[39m")
     # append calculation to a list of user inputs
     new_lesson_data.append(lesson_earnings)
@@ -336,7 +340,7 @@ def add_more_data():
     the code below:
     https://maschituts.com/2-ways-to-loop-back-to-the-beginning-of-a-program-in-python/
     """
-    print(Fore.CYAN)
+    print(Fore.YELLOW)
     add_data = input("Do you want to add more data [y/n]?\n")
     print("\033[39m")
     new_data = add_data.upper()
