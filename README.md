@@ -9,9 +9,11 @@
 [Yoga Flow Class Record Repository](https://github.com/SamanthaBooth81/yoga-flow-class-record)
 
 # About
-This project collects lesson data from the user for the purpose of updating lesson data and calculate earnings. 
+This project is for users who teach lessons in any field who work for themselves. The aim is to collect lesson data from the user for the purpose of calculating earnings and updating the worksheet. 
 
-It is made with the intention of helping a small business owner keep their financial information in order and keep track of total earnings, both for the lesson added and a running total so far.
+It is made with the intention of helping a small business owner keep their financial information in order by keeping track of total earnings, both for the lesson added and a running total so far.
+
+The calculations for the earnings of the class being added use the price data per class duration that is stored in a separate worksheet and the attendance data that is directly input by the user into the terminal. The terminal will then print the earnings to the user as well as store them back in the attendance worksheet. 
 
 # Table of Contents
 
@@ -27,8 +29,6 @@ It is made with the intention of helping a small business owner keep their finan
 
 [Validator Testing](#validator-testing)
 
-[Performancce Testing](#performance-testing)
-
 [Bugs Found](#bugs-found)
 
 [Deployment](#deployment)
@@ -39,7 +39,7 @@ It is made with the intention of helping a small business owner keep their finan
 
 # User Experience
 ## User Stories
-- As a small business owner I want to:
+- As a self-employed teacher I want to:
     * Keep track of the business earnings
     * Plan for the future growth of the business 
 
@@ -91,23 +91,34 @@ The above should aid with decision making, such as making adjustments to the cur
 
 [Heroku](https://www.heroku.com/) - Connected to GitHub repositiry, Heroku is a cloud application platform used to deploy this project so this backend language can be utilised/tested. 
 
-[Google Sheets](https://workspace.google.com/intl/en_uk/products/sheets/?utm_source=google&utm_medium=cpc&utm_campaign=emea-gb-all-en-dr-bkws-all-all-trial-e-t1-1010042&utm_content=text-ad-crnurturectrl-none-DEV_c-CRE_146161043432-ADGP_Hybrid%20%7C%20BKWS%20-%20EXA%20%7C%20Txt%20~%20Sheets%20~%20General%20%232-KWID_43700012539607188-kwd-11403239008-userloc_20485&utm_term=KW_google%20sheets-g&ds_rl=1289227&ds_rl=1259922&ds_rl=1289227&gclid=Cj0KCQjwtMCKBhDAARIsAG-2Eu-ikZjdKWgK9omCfFHENiM0V260I6vw4zlmpc1cabn0Jyru79bRzmkaAjFMEALw_wcB&gclsrc=aw.ds) to create an online based spreadsheet.
+[Google Sheets](https://workspace.google.com/intl/en_uk/products/sheets/?utm_source=google&utm_medium=cpc&utm_campaign=emea-gb-all-en-dr-bkws-all-all-trial-e-t1-1010042&utm_content=text-ad-crnurturectrl-none-DEV_c-CRE_146161043432-ADGP_Hybrid%20%7C%20BKWS%20-%20EXA%20%7C%20Txt%20~%20Sheets%20~%20General%20%232-KWID_43700012539607188-kwd-11403239008-userloc_20485&utm_term=KW_google%20sheets-g&ds_rl=1289227&ds_rl=1259922&ds_rl=1289227&gclid=Cj0KCQjwtMCKBhDAARIsAG-2Eu-ikZjdKWgK9omCfFHENiM0V260I6vw4zlmpc1cabn0Jyru79bRzmkaAjFMEALw_wcB&gclsrc=aw.ds) is used to create an online based spreadsheet.
 
-[Google Sheets API](https://developers.google.com/sheets/api) to link into my spreadsheet.
+[Google Sheets API](https://developers.google.com/sheets/api) is used to link into my spreadsheet.
 
-[datetime](https://docs.python.org/3/library/datetime.html) to work with the date and time.
+[datetime](https://docs.python.org/3/library/datetime.html) to work with the date and time, ensuring it follows the correct format and doesn exceed the possible day and month.
 
-[Colorama](https://www.youtube.com/watch?v=u51Zjlnui4Y) is used to add colour to the terminal.
+[Colorama](https://www.youtube.com/watch?v=u51Zjlnui4Y) is used to add colour to the terminal which adds to the users experience.
 
 
 # Testing
 
 ## Functionality 
 
+The project follows the below logic: 
+
+<img src="assets/images/logic_flow_chart.png" height="350px"> 
+
+The user must input each entry of data individually as each item has to be validated using different parameters. Once all data is input the system makes its calculations. These inputs and calculations are then pushed back into the approproate worlsheet. 
+
 I have manually tested the projecy by:
 - running through a PEP8 linter
-- intentionally added incorrect data to ensure the code rejects it 
+- Intentionally added incorrect data to ensure the code rejects it 
 - Tested both in Gitpod and Heroku terminals
+- Ensured the data input from the deployed terminal pushes the data back into the worksheet as expected (see images below)
+
+<img src="assets/images/heroku_input.png" height="300px"> 
+
+<img src="assets/images/worksheet_output.png" height="80px"> 
 
 # Validator Testing
 
@@ -189,5 +200,6 @@ I used [Stack Overflow](https://stackoverflow.com/questions/3944655/testing-user
 
 I used this [Gspread Documentation](https://docs.gspread.org/en/latest/user-guide.html#getting-a-cell-value) to find out how to link to a column of data in a spreadsheet.
 
+I used Lucid Charts to create the logic flow diagram for the project. 
 # Acknowledgments
 Thank you to all who encouraged and supported me as I created my first game, espcially to my mentor for his guidance and patience and tutor support at The Code Institute who helped when I was stuck. 

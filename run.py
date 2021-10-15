@@ -1,6 +1,6 @@
 """
 Below code required to link into google sheets spreadsheet,
-datetime and colorama for styllign the terminal.
+datetime and colorama to add stylling the terminal.
 
 I used the following YouTube video to find out how
 to use Colorama:
