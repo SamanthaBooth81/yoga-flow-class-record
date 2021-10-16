@@ -154,21 +154,25 @@ def lesson_duration_data():
             duration_data_str = int(input("Enter lesson duration here:\n"))
             print("\033[39m")
 
+            # Used this page to find out how to remove an item from a list:
+            # https://www.edureka.co/blog/python-list-remove/#pop()
             lesson_durations = prices.col_values(1)
             del lesson_durations[0]
             # Used method 3 to turn a list of strings into a list of integers
             # https://www.geeksforgeeks.org/python-converting-all-strings-in-list-to-integers/
             duration_int = list(map(int, lesson_durations))
 
+            # I used Stack Overflow to help with comparing a user answer with
+            # a list:
+            # https://stackoverflow.com/questions/3944655/testing-user-input-against-a-list-in-python
             if duration_data_str in duration_int:
                 print("\n")
                 # append user input to a list of user inputs
                 new_lesson_data.append(duration_data_str)
 
-                # duration_index Stores globally the index
-                # of the duration input by the user from the
-                # list pulled from the worksheet. This will
-                # be used when calculating earnings for that lesson.
+                # duration_index Stores globally the index of the duration
+                # input by the user from the list pulled from the worksheet.
+                # This will be used when calculating earnings for that lesson.
                 global duration_index
                 duration_index = 0
                 duration_data_index = duration_int.index(duration_data_str)
@@ -256,6 +260,9 @@ def lesson_attendance_data():
             lesson_attendance = int(lesson_attendance_str)
 
             # Get the capacity using the index stored in location_index
+            # I used
+            # https://www.programiz.com/python-programming/methods/list/index
+            # to help with using the index to check a user input
             capacity_index = int(location_capacity[location_index])
 
             global attendance_total
@@ -270,16 +277,18 @@ def lesson_attendance_data():
             else:
                 while True:
                     print(Fore.YELLOW)
-                    print(f"{lesson_attendance} is above studio capacity\n")
-                    higher_capacity = input("Do you wish to continue [y/n]?\n")
+                    print(f"{lesson_attendance} is above capacity\n")
+                    print("Do you wish to continue?")
+                    higher_capacity = input("y/n \n")
                     add_higher_cap = higher_capacity.upper()
                     print("\033[39m")
-                    while True:
-                        if add_higher_cap == "Y":
-                            new_lesson_data.append(lesson_attendance)
-                            return False
-                        else:
-                            return lesson_attendance_data()
+                    if add_higher_cap == "Y":
+                        new_lesson_data.append(lesson_attendance)
+                        return False
+                    elif add_higher_cap == "N":
+                        return lesson_attendance_data()
+                    else:
+                        raise ValueError()
         except ValueError as e:
             print(Fore.RED)
             print(f"Data invalid: {e}, please try again\n")
@@ -351,18 +360,26 @@ def add_more_data():
     the code below:
     https://maschituts.com/2-ways-to-loop-back-to-the-beginning-of-a-program-in-python/
     """
-    print(Fore.YELLOW)
-    add_data = input("Do you want to add more data [y/n]?\n")
-    print("\033[39m")
-    new_data = add_data.upper()
-    while True:
-        if new_data == "Y":
-            new_lesson_data.clear()
-            print("\n")
-            return lesson_data()
-        else:
-            print("\n")
-            break
+    try:
+        print(Fore.YELLOW)
+        add_data = input("Do you want to add more data [y/n]?\n")
+        print("\033[39m")
+        new_data = add_data.upper()
+        while True:
+            if new_data == "Y":
+                new_lesson_data.clear()
+                print("\n")
+                return lesson_data()
+            elif new_data == "N":
+                print("\n")
+                break
+            else:
+                raise ValueError()
+    except ValueError as e:
+        print(Fore.RED)
+        print(f"Invalid input {e}, please input y/n \n")
+        print("\033[39m")
+        return add_more_data()
 
 
 def calculate_total_earnings():

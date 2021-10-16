@@ -214,5 +214,12 @@ I used [Maschituts](https://maschituts.com/2-ways-to-loop-back-to-the-beginning-
 
 I used method 3 on this [Geeks for Geeks](https://www.geeksforgeeks.org/python-converting-all-strings-in-list-to-integers/) article to turn a list of strings into a list of integers.
 
+I used [Programiz](https://www.programiz.com/python-programming/methods/list/index) and [Stock Overflow](https://stackoverflow.com/questions/42568565/how-to-index-a-list-based-on-user-input-and-print-the-result) to help with using the index to check a user input.
+
+I used [Stack Overflow](https://stackoverflow.com/questions/3944655/testing-user-input-against-a-list-in-python) to help with comparing the users answer with a list. 
+
+ I used [Edureka](https://www.edureka.co/blog/python-list-remove/#pop()) to find out how to remove an item from a list.
+
+
 # Acknowledgments
 Thank you to all who encouraged and supported me as I created my first game, espcially to my mentor for his guidance and patience and tutor support at The Code Institute who helped when I was stuck. 
