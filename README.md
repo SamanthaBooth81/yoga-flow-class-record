@@ -3,7 +3,7 @@
 <img src="assets/images/responsive_img.png" height="400px"> 
 
 **Live Site:**
-[Yoga Flow Class Record Terminal](https://yoga-flow-class-record.herokuapp.com/)
+[Yoga Flow Class Record Terminal](https://yoga-flow.onrender.com/)
 
 **Repository:**
 [Yoga Flow Class Record Repository](https://github.com/SamanthaBooth81/yoga-flow-class-record)
@@ -142,6 +142,10 @@ I attempted to remove the errors however the variables I have stored globally we
 - lesson_attendance_data
 
 # Deployment 
+
+The below steps are to deploy to Heroku, this project has been re-deployed to Render.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This project was deployed using the Code Institutes mock terminal for Heroku. 
 
